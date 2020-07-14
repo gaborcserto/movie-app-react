@@ -5,6 +5,22 @@
 .Search{
 	padding-top: 100px;
 
+	&__wrapper {
+		display: inline-block;
+		padding: 10px 20px;
+		width: 300px;
+	}
+
+	&__form {
+		&__input {
+			width: calc(100% - 50px);
+		}
+
+		&__button {
+			margin-left: 2px !important;
+		}
+	}
+
 	&__result {
 		&__pagination {
 			display: inline-block;
