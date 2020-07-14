@@ -18,11 +18,10 @@ function App() {
     const [totalPages, setTotalPages] = useState(0);
     const [totalResults, setTotalResults] = useState(0);
 
-
-    //setLanguage("en-US");
-    //setPage(1);
-
     useEffect(() => {
+        setLanguage("en-US");
+        setPage(1);
+
         fetch(`${process.env.REACT_APP_TMDB_API_URL}search/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=${language}&query=${query}&page=${page}`)
             .then(response => response.json())
             .then(jsonResponse => {

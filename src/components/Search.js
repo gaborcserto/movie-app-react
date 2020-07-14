@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-
+import TextField from '@material-ui/core/TextField';
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
 
 const Search = (props) => {
 	const [searchValue, setSearchValue] = useState("Batman");
@@ -22,14 +24,14 @@ const Search = (props) => {
 	}
 
 	return (
-		<form className="Search__form">
-			<input
-				value={searchValue}
-				onChange={handleSearchInputChanges}
-				type="text"
-				placeholder="Search..."
-			/>
-			<input onClick={callSearchFunction} type="submit" value="SEARCH" />
+		<form className="Search__form" noValidate autoComplete="off">
+			<TextField id="standard-basic" label="Search"
+			           value={searchValue}
+			           onChange={handleSearchInputChanges}
+			           type="text"/>
+			<IconButton aria-label="delete" onClick={callSearchFunction} >
+				<SearchIcon fontSize="large" />
+			</IconButton>
 		</form>
 	);
 }
