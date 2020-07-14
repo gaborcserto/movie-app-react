@@ -1,0 +1,15 @@
+.movieCard {
+	height: calc(100% - 2rem) !important;
+	margin-bottom: 2rem;
+
+	&__img {}
+
+	&__body {
+		min-height: 3.5rem;
+		padding: .5rem;
+
+		&__text {
+			font-size: .8rem;
+		}
+	}
+}

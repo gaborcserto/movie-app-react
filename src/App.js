@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 //import axios from 'axios';
-import Header from './components/Base/Header'
-import Search from './components/Search'
-import MovieCard from './components/MovieCard.js'
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
-import Pagination from '@material-ui/lab/Pagination';
 import './App.scss';
+import Header from './components/Base/Header'
+import Search from './components/Search/Search'
+import MovieCard from './components/MovieCard/MovieCard'
+import { Col, Container, Row, Button } from 'react-bootstrap';
+
 
 function App() {
     const [query, setQuery] = useState("Batman");
@@ -18,14 +17,19 @@ function App() {
     const [totalPages, setTotalPages] = useState(0);
     const [totalResults, setTotalResults] = useState(0);
 
+
+    console.log(`page: ${page}`);
     useEffect(() => {
         setLanguage("en-US");
-        setPage(1);
+        console.log('effect');
 
-        fetch(`${process.env.REACT_APP_TMDB_API_URL}search/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=${language}&query=${query}&page=${page}`)
+        fetch(`${process.env.REACT_APP_TMDB_API_URL}search/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=${language}&query=${query}&page=${page}`, {
+            headers : {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }})
             .then(response => response.json())
             .then(jsonResponse => {
-                console.log(jsonResponse);
                 setMovieData(jsonResponse.results);
                 setTotalResults(jsonResponse.total_results);
                 setTotalPages(jsonResponse.total_pages);
@@ -33,12 +37,45 @@ function App() {
             });
     }, [language, page, query]);
 
-    const search = searchValue => {
+    const handleShowMore = () => {
+        //setPage(page + 1);
+        console.log('show more');
+    };
+
+
+    //listType: upcoming, now_playing, popular, top_rated, latest, ,
+    //queryType: search, movie, tv
+    const getMovies = (queryType,listType) => {
+        fetch(`${process.env.REACT_APP_TMDB_API_URL}${queryType}/${listType}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=${language}&page=${page}`, {
+            headers : {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }})
+            .then(response => response.json())
+            .then(jsonResponse => {
+                if (jsonResponse.Response === "True") {
+                    setLoading(false);
+                    return jsonResponse.results;
+                } else {
+                    setError(jsonResponse.Error);
+                    setLoading(false);
+                }
+            });
+    }
+
+
+
+    const getSearch = searchValue => {
+        console.log('search');
         setLoading(true);
         setError(null);
         setQuery(searchValue);
 
-        fetch(`${process.env.REACT_APP_TMDB_API_URL}search/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=${language}&query=${searchValue}&page=${page}`)
+        fetch(`${process.env.REACT_APP_TMDB_API_URL}search/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=${language}&query=${searchValue}&page=${page}`, {
+            headers : {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }})
             .then(response => response.json())
             .then(jsonResponse => {
                 if (jsonResponse.Response === "True") {
@@ -56,24 +93,24 @@ function App() {
     return (
         <div className="App">
             <Header title="Movie Search" />
-            <Container maxWidth="lg" className="Search">
-            <Search search={search} />
+            <Container className="search">
+            <Search search={getSearch} />
             {
                 loading && !error && (!movieData || movieData.length === 0) ? (
                     <span>loading...</span>
                 ) : error ? (
                     <div className="errorMessage">{`error: ${error}`}</div>
                 ) : movieData && movieData.length > 0 ? (
-                    <div className="Search__result">
+                    <div className="search__result">
                         <h3>Total "{query}" search results: {totalResults}</h3>
-                        <Grid container spacing={4} wrap={'wrap'}>
+                        <Row>
                         {movieData.map((movie, index) => (
-                            <Grid key={`${index}-${movie.title}`} item xs={6} lg={3}>
+                            <Col className="search__result__col" key={`${index}-${movie.title}`} xs={6} lg={3}>
                                 <MovieCard key={index} movie={movie} />
-                            </Grid>
+                            </Col>
                         ))}
-                        </Grid>
-                        <Pagination className="Search__result__pagination" count={totalPages} defaultPage={page} siblingCount={0} />
+                        </Row>
+                        {totalPages > page ? <div className="LoadingMore"><Button className="LoadingMore__Button" variant="secondary" onClick={handleShowMore}>Load more</Button></div> : null }
                     </div>
                 ) : (
                     <span>loading...</span>
