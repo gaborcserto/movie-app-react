@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 //import axios from 'axios';
 import './App.scss';
-import Header from './components/Base/Header'
-import Search from './components/Search/Search'
+import Header from "./components/Header/Header";
 import MovieCard from './components/MovieCard/MovieCard'
 import { Col, Container, Row, Button } from 'react-bootstrap';
+import { FaPlus } from 'react-icons/fa';
+
 
 
 function App() {
@@ -16,7 +17,6 @@ function App() {
     const [language, setLanguage] = useState("en-US");
     const [totalPages, setTotalPages] = useState(0);
     const [totalResults, setTotalResults] = useState(0);
-
 
     console.log(`page: ${page}`);
     useEffect(() => {
@@ -45,7 +45,7 @@ function App() {
 
     //listType: upcoming, now_playing, popular, top_rated, latest, ,
     //queryType: search, movie, tv
-    const getMovies = (queryType,listType) => {
+    /*const getMovies = (queryType, listType) => {
         fetch(`${process.env.REACT_APP_TMDB_API_URL}${queryType}/${listType}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=${language}&page=${page}`, {
             headers : {
                 'Content-Type': 'application/json',
@@ -61,9 +61,13 @@ function App() {
                     setLoading(false);
                 }
             });
-    }
+    }*/
 
-
+    //listType: upcoming, now_playing, popular, top_rated, latest, ,
+    //queryType: search, movie, tv
+    /*const getUrl = (queryType, listType, language, page) => {
+        return `${process.env.REACT_APP_TMDB_API_URL}${queryType}/${listType}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=${language}&page=${page}`;
+    }*/
 
     const getSearch = searchValue => {
         console.log('search');
@@ -90,27 +94,55 @@ function App() {
             });
     };
 
+    /*const useFetch = (url) => {
+        const [response, setResponse] = useState(null);
+        const [error, setError] = useState(null);
+        const [loading, setLoading] = useState(false);
+        const [reFetchIndex, setReFetchIndex] = useState(0)
+
+        const reFetch = () => setReFetchIndex((prevReFetchIndex) => prevReFetchIndex + 1)
+
+        useEffect(() => {
+            const doFetch = async () => {
+                setLoading(true);
+                try {
+                    const resp = await fetch(url)
+                    const json = await resp.json();
+                    setResponse(json)
+                } catch (err) {
+                    setError(err)
+                } finally {
+                    setLoading(false);
+                }
+            }
+            doFetch();
+        }, [reFetchIndex, url])
+
+        return { response, error, loading, reFetch  };
+    }*/
+
     return (
         <div className="App">
-            <Header title="Movie Search" />
+            <Header
+                title="Movie Search"
+                search={getSearch} />
             <Container className="search">
-            <Search search={getSearch} />
             {
                 loading && !error && (!movieData || movieData.length === 0) ? (
                     <span>loading...</span>
                 ) : error ? (
                     <div className="errorMessage">{`error: ${error}`}</div>
                 ) : movieData && movieData.length > 0 ? (
-                    <div className="search__result">
-                        <h3>Total "{query}" search results: {totalResults}</h3>
+                    <div className="searchResult">
+                        <h2 className="searchResult__title">Total "{query}" search results: {totalResults}</h2>
                         <Row>
                         {movieData.map((movie, index) => (
-                            <Col className="search__result__col" key={`${index}-${movie.title}`} xs={6} lg={3}>
+                            <Col className="searchResult__col" key={`${index}-${movie.title}`} xs={6} lg={3}>
                                 <MovieCard key={index} movie={movie} />
                             </Col>
                         ))}
                         </Row>
-                        {totalPages > page ? <div className="LoadingMore"><Button className="LoadingMore__Button" variant="secondary" onClick={handleShowMore}>Load more</Button></div> : null }
+                        {totalPages > page ? <div className="LoadingMore"><Button className="LoadingMore__Button" variant="danger" onClick={handleShowMore} title="Load more"><FaPlus /></Button></div> : null }
                     </div>
                 ) : (
                     <span>loading...</span>

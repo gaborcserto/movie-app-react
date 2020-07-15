@@ -1,27 +1,17 @@
 
 .App {
+	background-color: #1c1b21;
 	text-align: center;
+	min-height: 100vh;
 }
 
-.search{
-
-	&__wrapper {
-
-	}
-
-	&__form {
-		&__input {
-
-		}
-
-		&__button {
-
-		}
-	}
-
-	&__result {
-		&__pagination {
-
-		}
+.searchResult {
+	&__title {
+		border-bottom: 1px solid #2c2b30;
+		color: white;
+		font-weight: normal;
+		margin: 2rem 0;
+		padding: 1rem 0;
+		text-align: left;
 	}
 }

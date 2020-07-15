@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, {useState} from 'react';
 import { InputGroup, Button, FormControl } from 'react-bootstrap';
+import './SearchBar.scss';
+import { FaSearch } from 'react-icons/fa';
 
-const Search = (props) => {
+const SearchBar = (props) => {
 	const [searchValue, setSearchValue] = useState("Batman");
 
 	const handleSearchInputChanges = e => {
@@ -19,20 +21,20 @@ const Search = (props) => {
 	}
 
 	return (
-		<InputGroup className="mb-3">
-			<InputGroup.Prepend>
-				<Button
-					onClick={callSearchFunction}
-					className="Search__form__button"
-					variant="outline-secondary">Search</Button>
-			</InputGroup.Prepend>
+		<div className="SearchBar">
 			<FormControl
-				className="Search__form__input"
+				className="SearchBar__input"
 				value={searchValue}
 				onChange={handleSearchInputChanges}
 				aria-describedby="basic-addon1" />
-		</InputGroup>
+			<Button
+				onClick={callSearchFunction}
+				className="SearchBar__button"
+				variant="danger">
+				<FaSearch />
+			</Button>
+		</div>
 	);
 }
 
-export default Search;
+export default SearchBar;

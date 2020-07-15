@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { Card } from 'react-bootstrap';
 import './MovieCard.scss';
 
@@ -11,7 +11,10 @@ const MovieCard = ({ movie }) => {
 	}
 
 	return (
-		<Card className="movieCard">
+		<Card
+			className="movieCard"
+		    bg="transparent"
+			text="white">
 			<Card.Img
 				className="movieCard__img"
 				variant="top"
