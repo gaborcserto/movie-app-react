@@ -31,17 +31,17 @@
 }
 
 .SearchBar {
-	padding: 10rem;
+	height: calc(38px + 10rem);
+	padding: 5rem;
 
 	&__input {
 		display: inline-block;
 		float: left;
-		width: calc(100% - 52px);
+		width: calc(100% - 48px);
 	}
 
 	&__button {
 		@include ripple(#dc3545, #c82333);
-		//border-radius: 100%;
 		float: left;
 		height: 38px;
 		margin-left: 10px;

@@ -4,5 +4,21 @@
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	height: 100%;
+	min-height: 100px;
+	//height: 100%;
+	position: sticky;
+	top: 0;
+	z-index: 9999;
+	box-shadow:	0 40px 15px #1c1b21;
+
+	&:after {
+		content: '\00a0';
+
+		background-image:
+				radial-gradient(at 50% 0, #1c1b21 0%, #dc3545 50%, transparent 75%);
+		background-size: 100% 2px;
+		background-repeat: no-repeat;
+		float:left;
+		width:100%;
+	}
 }

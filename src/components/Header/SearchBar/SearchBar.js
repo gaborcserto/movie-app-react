@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { InputGroup, Button, FormControl } from 'react-bootstrap';
+import { Container, Button, FormControl } from 'react-bootstrap';
 import './SearchBar.scss';
 import { FaSearch } from 'react-icons/fa';
 
@@ -21,7 +21,7 @@ const SearchBar = (props) => {
 	}
 
 	return (
-		<div className="SearchBar">
+		<Container className="SearchBar">
 			<FormControl
 				className="SearchBar__input"
 				value={searchValue}
@@ -33,7 +33,7 @@ const SearchBar = (props) => {
 				variant="danger">
 				<FaSearch />
 			</Button>
-		</div>
+		</Container>
 	);
 }
 
