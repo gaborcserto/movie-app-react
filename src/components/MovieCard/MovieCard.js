@@ -1,18 +1,11 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { generateCustomPlaceholderURL } from "react-placeholder-image";
 import Img from "../ImgLoader";
 
 const MovieCard = ({ card }) => {
-	let poster = generateCustomPlaceholderURL(200, 300, {
-		textColor: '#ffffff',
-		text: 'No Image',
-	});
 	let link = `/movie_details/${card.id}`;
 	let title = card.title
-
-	if(card.poster_path !== null) poster = `https://image.tmdb.org/t/p/original${card.poster_path}`;
 
 	if(card.seriesTitle) {
 		title = card.seriesTitle;

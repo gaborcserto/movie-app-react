@@ -3,7 +3,7 @@ import { generateCustomPlaceholderURL } from 'react-placeholder-image';
 import { Img } from 'react-progressive-loader'
 
 const ImgLoader = (props) => {
-	let img;
+	let returnImg;
 	let alt = props.title;
 	let imgSrc = generateCustomPlaceholderURL(props.width, props.height, {
 		textColor: '#ffffff',
@@ -12,20 +12,21 @@ const ImgLoader = (props) => {
 	if (props.alt) alt = props.alt;
 
 	if (props.src !== null) {
-		img = <Img
+		returnImg = <Img
 			className={props.styled}
 			src={`https://image.tmdb.org/t/p/${props.type}${props.src}`}
 			placeholderSrc={`https://image.tmdb.org/t/p/w200${props.src}`}
-			alt={alt} title={props.title}/>
+			alt={alt}
+			title={props.title}/>
 	} else {
-		img = <img
+		returnImg = <img
 			className={props.styled}
 			src={imgSrc}
 			alt={alt}
 			title={props.title} />
 	}
 
-	return img
+	return returnImg
 }
 
 export default ImgLoader;

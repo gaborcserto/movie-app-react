@@ -1,5 +1,5 @@
-import React, { useEffect, useState,  Suspense, lazy } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { useEffect, useState,  Suspense} from 'react';
+import { Route, Switch,  useHistory } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import Loading from '../components/Loading';
 import { Container } from 'react-bootstrap';
@@ -11,7 +11,6 @@ import MovieDetailsPage from '../pages/MovieDetailsPage';
 import SeriesDetailsPage from '../pages/SeriesDetailsPage';
 import ErrorPage from '../pages/ErrorPage';
 import fetchingData from '../hooks/FetchingData';
-import movieData from '../mock/movieData';
 
 
 function App() {
@@ -22,13 +21,17 @@ function App() {
     const [ upcomingMovies, setUpcomingMovies ] = useState(null);
     const [ popularSeries, setPopularSeries ] = useState(null);
 
+    let history = useHistory();
+
     const handleShowMore = () => {
-        //setPage(page + 1);
+        setPage(page + 1);
         console.log('show more');
     };
 
-    const getSearch = searchValue => {
-        console.log(searchValue);
+    const getSearch = (searchValue, searchType) => {
+        if(searchValue && searchType) {
+            history.push(`/search/${searchType}/${searchValue}`);
+        }
     }
 
     const popularData = fetchingData({
@@ -56,7 +59,7 @@ function App() {
     });
 
     useEffect(() => {
-        if (popularData .response !== null) {
+        if (popularData.response !== null) {
             setUpcomingMovies(popularData.response);
         }
         if (upcomingData.response !== null) {
@@ -110,18 +113,12 @@ function App() {
                                 popularSeriesData={popularSeries}
                                 number={10}/>
                         </Route>
-                        <Route path="/search/:query">
-                            <ListPage
-                                listData={''}
-                                loading={''}
+                        <Route path="/search/:type/:query">
+                            <SearchPage
+                                page={page}
                                 title="Search"
                                 type="search"/>
-                        <ListPage
-                            listData={nowPlayingMovies}
-                            loading={nowPlayingData.loading}
-                            title="Now Playing Movies"
-                            type="now_playing"/>
-                    </Route>
+                        </Route>
                         <Route component={ErrorPage} />
                     </Switch>
                 </Container>

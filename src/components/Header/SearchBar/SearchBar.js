@@ -4,7 +4,7 @@ import { FaSearch } from 'react-icons/fa';
 
 const SearchBar = (props) => {
 	const [searchValue, setSearchValue] = useState('');
-	const [searchType, setSearchType] = useState('Movie');
+	const [searchType, setSearchType] = useState('movie');
 
 	const handleSearchSelectChanges = e => {
 		setSearchType(e.target.value);
@@ -15,13 +15,14 @@ const SearchBar = (props) => {
 	}
 
 	const resetInputField = () => {
-		setSearchValue("")
+		//setSearchValue("")
+		//setSearchType('movie')
 	}
 
 	const callSearchFunction = e => {
 		e.preventDefault();
-		props.search(searchValue);
-		resetInputField();
+		props.search(searchValue, searchType);
+		//resetInputField();
 	}
 
 	return (
@@ -30,10 +31,10 @@ const SearchBar = (props) => {
 				onChange={handleSearchSelectChanges}
 				className="SearchBar__select"
 				as="select"
-				defaultValue="Movie">
-				<option>Movie</option>
-				<option>Tv</option>
-				<option>Person</option>
+				value={searchType}>
+				<option value="movie">Movie</option>
+				<option value="tv">Tv</option>
+				<option value="person">Person</option>
 			</FormControl>
 			<FormControl
 				placeholder="Search..."
@@ -46,7 +47,7 @@ const SearchBar = (props) => {
 				variant="danger">
 				<FaSearch />
 			</Button>
-		</Container>
+	</Container>
 	);
 }
 

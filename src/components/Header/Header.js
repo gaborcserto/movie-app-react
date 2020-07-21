@@ -69,7 +69,7 @@ const Header = (props) => {
 			</Navbar>
 			{ noSearch ?
 				null :
-				<SearchBar className="header__search" search={props.search} type={props.type}/>
+				<SearchBar className="header__search" search={props.search}/>
 			}
 		</header>
 	);

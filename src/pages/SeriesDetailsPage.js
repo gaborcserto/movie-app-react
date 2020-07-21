@@ -5,6 +5,7 @@ import { MdTimer } from 'react-icons/md'
 import fetchingData from "../hooks/FetchingData";
 import NoDetails from "../components/Details/NoDetails"
 import Img from '../components/ImgLoader'
+import PlotDetails from "../components/Details/PlotDetails";
 
 const SeriesDetailsPage = props => {
 	let seriesDetails;
@@ -30,9 +31,8 @@ const SeriesDetailsPage = props => {
 	if(seriesData) {
 		seriesDetails = (
 			<React.Fragment>
-				<div className="details__background"
-				     style={{backgroundImage: `url(https://image.tmdb.org/t/p/original${seriesData.backdrop_path})`}} />
-				<div className="details__content">
+				<div className="details__background" style={{backgroundImage: `url(https://image.tmdb.org/t/p/original${seriesData.backdrop_path})`}} />
+				<div className="series details__content">
 					<Row>
 						<Col sm={12} md={3} className="details__content__poster">
 							<Img
@@ -69,9 +69,10 @@ const SeriesDetailsPage = props => {
 									target="_blank">Link</a>
 							</Col>
 							<Col sm={12} md={9} className="details__content__body__plot">
-								<p className="details__content__body__plot__tagline">{seriesData.tagline}</p>
-								<h2 className="details__content__body__plot__title">Plot</h2>
-								<div className="details__content__body__plot_text">{seriesData.overview}</div>
+								<PlotDetails
+									tagline={seriesData.tagline}
+									title="Plot"
+									overview={seriesData.overview}/>
 							</Col>
 						</Row>
 					</div>

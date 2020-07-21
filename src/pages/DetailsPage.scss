@@ -42,7 +42,7 @@
 		&__poster {
 			display: inline-block;
 
-			img {
+			>div {
 				@include border-radius( 0.6rem);
 				@include soft-shadow($black);
 				max-width: 100%;
@@ -105,12 +105,12 @@
 
 
 			&__plot {
-				&__tagline {
+				.tagline {
 					font-size: 18px;
 					font-style: italic;
 				}
 
-				&__title {
+				.title {
 					border-left: 10px solid $primary;
 					color: $gray-1;
 					margin-bottom: 20px;

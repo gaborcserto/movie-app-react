@@ -1,5 +1,5 @@
-import Loading from "../Loading";
-import React from "react";
+import React from 'react';
+import Loading from '../Loading';
 
 const noDetails = () => {
 	return (

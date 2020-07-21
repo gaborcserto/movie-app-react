@@ -1,6 +1,6 @@
 import React from 'react';
 
-const errorPage = props => {
+const errorPage = () => {
 	return (
 		<React.Fragment>
 			<h2 className="mainContent__title">Oops! Page not found!</h2>

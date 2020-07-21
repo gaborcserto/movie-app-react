@@ -5,7 +5,6 @@ import Loading from "../components/Loading";
 
 const ListPage = props => {
 
-	console.log(props);
 	let listItems;
 
 	if(props.loading || !props.listData) {

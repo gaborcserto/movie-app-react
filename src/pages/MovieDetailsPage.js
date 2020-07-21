@@ -3,8 +3,9 @@ import { useParams } from 'react-router-dom';
 import { Col, Row } from 'react-bootstrap';
 import { MdTimer } from 'react-icons/md'
 import testCredits from '../mock/movieCredits';
-import fetchingData from "../hooks/FetchingData";
-import NoDetails from "../components/Details/NoDetails"
+import fetchingData from '../hooks/FetchingData';
+import NoDetails from '../components/Details/NoDetails';
+import PlotDetails from '../components/Details/PlotDetails';
 import Img from '../components/ImgLoader'
 
 const MovieDetailsPage = () => {
@@ -18,8 +19,6 @@ const MovieDetailsPage = () => {
 		queryType: 'movie',
 		detailsID: params.id
 	});
-
-	console.log(params);
 
 	useEffect(() => {
 		if (details.response !== null) {
@@ -38,7 +37,7 @@ const MovieDetailsPage = () => {
 			<React.Fragment>
 				<div className="details__background"
 				     style={background} />
-				<div className="details__content">
+				<div className="movie details__content">
 					<Row>
 						<Col sm={12} md={3} className="details__content__poster">
 							<Img
@@ -75,9 +74,10 @@ const MovieDetailsPage = () => {
 									target="_blank">Link</a>
 							</Col>
 							<Col sm={12} md={9} className="details__content__body__plot">
-								<p className="details__content__body__plot__tagline">{movieData.tagline}</p>
-								<h2 className="details__content__body__plot__title">Plot</h2>
-								<div className="details__content__body__plot_text">{movieData.overview}</div>
+								<PlotDetails
+									tagline={movieData.tagline}
+									title="Plot"
+									overview={movieData.overview}/>
 							</Col>
 						</Row>
 					</div>

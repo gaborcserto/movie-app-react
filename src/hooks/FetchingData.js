@@ -8,16 +8,18 @@ const FetchingData = (urlParams) => {
 
 	let URL;
 	//listType: upcoming, now_playing, popular, top_rated, latest, ,
-	//queryType: search, movie, tv
+	//queryType: movie, tv
 	if(urlParams.OMDB) {
 		URL = `${process.env.REACT_APP_OMDB_API_URL}?apikey=${process.env.REACT_APP_OMDB_API_KEY}&i=${urlParams.imdbID}`;
 	} else if (urlParams.detailsID) {
 		URL = `${process.env.REACT_APP_TMDB_API_URL}${urlParams.queryType}/${urlParams.detailsID}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
+	} else if (urlParams.query) {
+		URL = `${process.env.REACT_APP_TMDB_API_URL}search/${urlParams.queryType}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&query=${urlParams.query}&page=${urlParams.page}`;
 	} else {
 		URL = `${process.env.REACT_APP_TMDB_API_URL}${urlParams.queryType}/${urlParams.listType}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&page=${urlParams.page}`;
 	}
 
-	//console.log(URL);
+	console.log(URL);
 	useEffect(() => {
 		const doFetch = async () => {
 			setLoading(true);
