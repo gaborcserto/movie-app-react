@@ -1,1 +1,19 @@
 @import "~bootstrap/scss/bootstrap";
+@import './assets/scss/mixins';
+@import './assets/scss/color';
+
+@import 'containers/App';
+
+@import './components/Header/Header';
+@import './components/Header/SearchBar/SearchBar';
+
+@import './components/Loading';
+
+@import './components/MovieCard/MovieCard';
+
+@import './pages/DetailsPage';
+@import './pages/ErrorPage';
+
+body {
+	background-color: $gray-1;
+}

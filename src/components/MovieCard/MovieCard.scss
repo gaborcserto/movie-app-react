@@ -1,34 +1,46 @@
 .movieCard {
 	background-color: transparent;
 	border: 0;
+	cursor: pointer;
 	height: calc(100% - 2rem) !important;
 	margin-bottom: 2rem;
+	padding-bottom: 3.5rem;
+	position: relative;
 	transition: transform;
 	transition-duration: 0.25s;
 
 	&__img {
-		border-radius: 0.4rem;
-		box-shadow:
-				0 2.8px 2.2px rgba(0, 0, 0, .034),
-				0 6.7px 5.3px rgba(0, 0, 0, .048),
-				0 12.5px 10px rgba(0, 0, 0, .06),
-				0 22.3px 17.9px rgba(0, 0, 0, .072),
-				0 41.8px 33.4px rgba(0, 0, 0, .086),
-				0 100px 80px rgba(0, 0, 0, .12);
+		@include soft-shadow($black);
+		@include border-radius( 0.4rem);
+		transition: filter;
+		transition-duration: 0.25s;
 	}
 
 	&__body {
+		bottom: 0;
 		min-height: 3.5rem;
 		padding: .5rem;
+		position: absolute;
 		text-align: left;
+		overflow: hidden;
 
 		&__text {
 			font-size: .8rem;
 			font-weight: bold;
 		}
+
+		@include media-breakpoint-between(xs, lg) {
+			&__text {
+				font-size: .6rem;
+			}
+		}
 	}
 
 	&:hover {
-		transform: scale(1.08);
+		@include transform(scale(1.08));
+
+		.movieCard__img {
+			filter: grayscale(100%);
+		}
 	}
 }

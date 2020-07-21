@@ -1,0 +1,18 @@
+.App {
+	background-color: $white;
+	//text-align: center;
+	min-height: 100vh;
+}
+
+.mainContent {
+	color: $gray-1;
+
+	&__title {
+		border-bottom: 1px solid $gray-2;
+		color: $gray-1;
+		font-weight: normal;
+		margin: 2rem 0;
+		padding: 1rem 0;
+		text-align: left;
+	}
+}

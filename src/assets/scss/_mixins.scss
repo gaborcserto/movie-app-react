@@ -1,0 +1,197 @@
+//btn-variant
+@mixin btn-variant ($background, $color) {
+	background-color: $background;
+	border-color: $background;
+	box-shadow: 0 5px 15px 0 rgba(0,0,0,.15);
+	color: $color;
+
+	&.focus,
+	&:hover,
+	&:focus {
+		background-color: darken($background,8%);
+		border-color: darken($background,8%);
+		color: $color;
+	}
+
+	&:active {
+		background: darken($background,25%);
+		border-color: darken($background,25%);
+		color: $color;
+	}
+}
+
+@mixin ripple($color1, $color2) {
+	position: relative;
+	overflow: hidden;
+	transform: translate3d(0, 0, 0);
+
+	&:after {
+		content: "";
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		pointer-events: none;
+		background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+		background-repeat: no-repeat;
+		background-position: 50%;
+		transform: scale(10, 10);
+		opacity: 0;
+		transition: transform .5s, opacity 1s;
+	}
+
+	&:active{
+		&:after {
+			transform: scale(0, 0);
+			opacity: .3;
+			transition: 0s;
+		}
+
+	}
+}
+
+//
+@mixin soft-shadow($color) {
+	box-shadow:	0 2.8px 2.2px rgba($color, .034),
+			0 6.7px 5.3px rgba($color, .048),
+			0 12.5px 10px rgba($color, .06),
+			0 22.3px 17.9px rgba($color, .072),
+			0 41.8px 33.4px rgba($color, .086),
+			0 100px 80px rgba($color, .12);
+}
+
+//box sizing
+@mixin box-sizing($box-property) {
+	box-sizing: $box-property;
+}
+
+//box shadow
+@mixin box-shadow($shadow-property) {
+	box-shadow: $shadow-property;
+}
+
+//border radius
+@mixin border-top-left-radius($radius) {
+	border-top-left-radius: $radius;
+	background-clip: padding-box;
+}
+
+@mixin border-top-right-radius($radius) {
+	border-top-right-radius: $radius;
+	background-clip: padding-box;
+}
+
+@mixin border-bottom-left-radius($radius) {
+	border-bottom-left-radius: $radius;
+	background-clip: padding-box;
+}
+
+@mixin border-bottom-right-radius($radius) {
+	border-bottom-right-radius: $radius;
+	background-clip: padding-box;
+}
+
+@mixin border-radius($radius) {
+	border-radius: $radius;
+	background-clip: padding-box;
+}
+
+//transform
+@mixin transform($transform-property) {
+	transform: $transform-property;
+}
+
+//transition
+@mixin transition($transition-property...) {
+	transition: $transition-property;
+}
+
+//positions
+@mixin center-align() {
+	@include transform(translate(-50%, -50%));
+	position: relative;
+	left: 50%;
+	top: 50%;
+}
+
+@mixin vertical-align() {
+	@include transform(translateY(-50%));
+	position: relative;
+	top: 50%;
+}
+
+@mixin horizontal-align() {
+	@include transform(translateX(-50%));
+	position: relative;
+	left: 50%;
+}
+
+@mixin vertical-align-absolute() {
+	@include vertical-align();
+	position: absolute;
+}
+
+@mixin horizontal-align-absolute() {
+	@include horizontal-align();
+	position: absolute;
+}
+
+@mixin center-align-absolute() {
+	@include center-align();
+	position: absolute;
+}
+
+
+//placeholder
+@mixin placeholder($color, $weight:"") {
+	&::-webkit-input-placeholder {
+		color: $color;
+		font-weight: $weight;
+	}
+	&:-moz-placeholder {
+		color: $color;
+		font-weight: $weight;
+	}
+	&::-moz-placeholder {
+		color: $color;
+		font-weight: $weight;
+	}
+	&:-ms-input-placeholder {
+		color: $color;
+		font-weight: $weight;
+	}
+}
+
+//separator
+@mixin separator($style, $color) {
+	border: 0;
+	border-bottom: 1px $style $color;
+}
+
+@mixin separator-top($style, $color) {
+	border: 0;
+	border-top: 1px $style $color;
+}
+
+//animation
+@mixin animation-name($animation) {
+	animation-name: $animation;
+}
+
+//keyframes
+@mixin keyframes($animationName) {
+	@-webkit-keyframes #{$animationName} {
+		@content;
+	}
+	@-moz-keyframes #{$animationName} {
+		@content;
+	}
+	@-o-keyframes #{$animationName} {
+		@content;
+	}
+	@keyframes #{$animationName} {
+		@content;
+	}
+}

@@ -1,0 +1,145 @@
+.details {
+	&__background {
+		background-color: $gray-1;
+		background-size: cover;
+		height: 500px;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 600;
+		box-shadow: 0 1px 1px rgba(0,0,0,0.25),
+		0 2px 2px rgba(0,0,0,0.20),
+		0 4px 4px rgba(0,0,0,0.15),
+		0 8px 8px rgba(0,0,0,0.10),
+		0 16px 16px rgba(0,0,0,0.05);
+
+		&:after {
+			background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba($gray-1, 1));
+			bottom: 0;
+			content: '';
+			height: 200px;
+			left: 0;
+			position: absolute;
+			width: 100%;
+		}
+
+		@include media-breakpoint-down(sm) {
+			height: 300px;
+		}
+	}
+
+	&__content {
+		margin-top: 200px;
+		position: relative;
+		text-align: left;
+		z-index: 700;
+
+		@include media-breakpoint-down(sm) {
+			margin-top: 60px;
+		}
+
+		&__poster {
+			display: inline-block;
+
+			img {
+				@include border-radius( 0.6rem);
+				@include soft-shadow($black);
+				max-width: 100%;
+			}
+
+			@include media-breakpoint-down(sm) {
+				text-align: center;
+			}
+		}
+
+		&__head {
+			color: $white;
+
+			@include media-breakpoint-down(sm) {
+				color: $gray-1;
+				border-bottom: 1px dotted $gray-5;
+				padding-bottom: 20px;
+			}
+
+			&__title {
+				font-size: 50px;
+			}
+
+			&__time {
+				font-size: 12px;
+				line-height: 20px;
+
+				&__icon {
+					display: inline-block;
+					float: left;
+					font-size: 16px;
+					height: 20px;
+					position: relative;
+					width: 20px;
+
+					svg {
+						@include center-align-absolute;
+					}
+				}
+			}
+
+			&__credit {
+				font-weight: bold;
+				margin: 0;
+
+				span {
+					font-size: 14px;
+					font-weight: normal;
+				}
+			}
+		}
+
+		&__body {
+			color: $gray-1;
+
+			&__plot {
+				&__tagline {
+					font-size: 18px;
+					font-style: italic;
+				}
+
+				&__title {
+					border-left: 10px solid $primary;
+					color: $gray-1;
+					margin-bottom: 20px;
+					padding-left: 5px;
+				}
+
+				&__text {}
+			}
+
+			&__short {
+				padding-top: 30px;
+
+				h3 {
+					color: $gray-4;
+					font-size: 14px;
+					text-transform: uppercase;
+				}
+
+				p {
+					color: $gray-1;
+					font-size: 12px;
+				}
+
+				a {
+					color: $primary;
+					font-size: 12px;
+					font-weight: bold;
+				}
+
+				@include media-breakpoint-down(sm) {
+					border-bottom: 1px dotted $gray-5;
+					margin-bottom: 20px;
+					padding-bottom: 20px;
+				}
+			}
+		}
+	}
+}

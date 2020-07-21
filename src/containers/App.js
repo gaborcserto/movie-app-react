@@ -1,0 +1,137 @@
+import React, { useEffect, useState,  Suspense, lazy } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import Header from '../components/Header/Header';
+import Loading from '../components/Loading';
+import { Container } from 'react-bootstrap';
+
+import HomePage from '../pages/HomePage';
+import ListPage from '../pages/ListPage';
+import SearchPage from '../pages/SearchPage';
+import MovieDetailsPage from '../pages/MovieDetailsPage';
+import ErrorPage from '../pages/ErrorPage';
+import fetchingData from '../hooks/FetchingData';
+import movieData from '../mock/movieData';
+
+
+function App() {
+    const [page, setPage] = useState(1);
+    const [language, setLanguage] = useState("en-US");
+
+    const [ nowPlayingMovies, setNowPlayingMovies ] = useState(null);
+    const [ popularMovies, setPopularMovies ] = useState(null);
+    const [ upcomingMovies, setUpcomingMovies ] = useState(null);
+    const [ popularSeries, setPopularSeries ] = useState(null);
+
+    const handleShowMore = () => {
+        //setPage(page + 1);
+        console.log('show more');
+    };
+
+    const getSearch = searchValue => {
+        console.log(searchValue);
+    }
+
+    const popularData = fetchingData({
+        queryType: 'movie',
+        listType: 'popular',
+        language: language,
+        page: page
+    });
+
+    const nowPlayingData = fetchingData({
+        queryType: 'movie',
+        listType: 'now_playing',
+        language: language,
+        page: page
+    });
+
+    const upcomingData = fetchingData({
+        queryType: 'movie',
+        listType: 'upcoming',
+        language: language,
+        page: page
+    });
+
+    const popularSeriesData = fetchingData({
+        queryType: 'tv',
+        listType: 'popular',
+        language: language,
+        page: page
+    });
+
+    useEffect(() => {
+        if (popularData .response !== null) {
+            setUpcomingMovies(popularData.response);
+        }
+        if (upcomingData.response !== null) {
+            setPopularMovies(upcomingData.response);
+        }
+        if (nowPlayingData.response !== null) {
+            setNowPlayingMovies(nowPlayingData.response);
+        }
+        if (popularSeriesData.response !== null) {
+            setPopularSeries(popularSeriesData.response);
+        }
+    }, [popularData.response, upcomingData.response, nowPlayingData.response, popularSeriesData.response]);
+
+    return (
+        <div className="App">
+                <Header
+                    title="Movie Search"
+                    search={getSearch}
+                />
+                <Container className="mainContent">
+                    <Suspense fallback={<Loading />}/>
+                    <Switch>
+                        <Route path="/upcoming">
+                            <ListPage
+                                listData={upcomingMovies}
+                                title="Upcoming Movies"
+                                loading={upcomingData.loading}
+                                type="upcoming"/>
+                        </Route>
+                        <Route path="/popular">
+                            <ListPage
+                                listData={popularMovies}
+                                loading={popularData.loading}
+                                title="Popular Movies"
+                                type="popular"/>
+                        </Route>
+                        <Route path="/now_playing">
+                            <ListPage
+                                listData={nowPlayingMovies}
+                                loading={nowPlayingData.loading}
+                                title="Now Playing Movies"
+                                type="now_playing"/>
+                        </Route>
+                        <Route exact path="/movie_details/:id" component={MovieDetailsPage} />
+                        <Route exact path="/series_details/:id" component={MovieDetailsPage} />
+                        <Route exact path="/">
+                            <HomePage
+                                upcomingMoviesData={upcomingMovies}
+                                popularMoviesData={popularMovies}
+                                nowPlayingMoviesData={nowPlayingMovies}
+                                popularSeriesData={popularSeries}
+                                number={10}/>
+                        </Route>
+                        <Route path="/search/:query">
+                            <ListPage
+                                listData={''}
+                                loading={''}
+                                title="Search"
+                                type="search"/>
+                        <ListPage
+                            listData={nowPlayingMovies}
+                            loading={nowPlayingData.loading}
+                            title="Now Playing Movies"
+                            type="now_playing"/>
+                    </Route>
+                        <Route component={ErrorPage} />
+                    </Switch>
+                </Container>
+
+        </div>
+    );
+}
+
+export default App;
