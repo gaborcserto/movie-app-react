@@ -14,10 +14,10 @@ const SearchBar = (props) => {
 		setSearchValue(e.target.value);
 	}
 
-	const resetInputField = () => {
+	/*const resetInputField = () => {
 		//setSearchValue("")
 		//setSearchType('movie')
-	}
+	}*/
 
 	const callSearchFunction = e => {
 		e.preventDefault();

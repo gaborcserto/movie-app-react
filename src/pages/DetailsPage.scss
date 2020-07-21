@@ -27,6 +27,10 @@
 		@include media-breakpoint-down(sm) {
 			height: 300px;
 		}
+
+		&.person {
+			height: 300px;
+		}
 	}
 
 	&__content {
@@ -42,7 +46,7 @@
 		&__poster {
 			display: inline-block;
 
-			>div {
+			&__image {
 				@include border-radius( 0.6rem);
 				@include soft-shadow($black);
 				max-width: 100%;
@@ -150,6 +154,10 @@
 					padding-bottom: 20px;
 				}
 			}
+		}
+
+		&.person {
+			margin-top: 0;
 		}
 	}
 }

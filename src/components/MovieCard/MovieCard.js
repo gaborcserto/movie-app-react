@@ -3,13 +3,20 @@ import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Img from "../ImgLoader";
 
-const MovieCard = ({ card }) => {
+const MovieCard = ({ card, type }) => {
+	console.log(card);
+
 	let link = `/movie_details/${card.id}`;
 	let title = card.title
+	let poster = card.poster_path
 
-	if(card.seriesTitle) {
-		title = card.seriesTitle;
-		link = `/series_details/${card.movieID}`
+	if(type === 'tv') {
+		title = card.name;
+		link = `/series_details/${card.id}`
+	} else if (type === 'person') {
+		title = card.name;
+		link = `/person_details/${card.id}`
+		poster = card.profile_path;
 	}
 
 	return (
@@ -22,7 +29,7 @@ const MovieCard = ({ card }) => {
 				text="dark">
 				<Img
 					styled="card-img-top movieCard__img"
-					src={card.poster_path}
+					src={poster}
 					width={200}
 					height={300}
 					type="w500"

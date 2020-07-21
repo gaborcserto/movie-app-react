@@ -40,13 +40,14 @@ const SeriesDetailsPage = props => {
 								width={200}
 								height={300}
 								type="w200"
+								styled="details__content__poster__image"
 								title={seriesData.title}
 								text="No Image"/>
 						</Col>
 						<Col sm={12} md={9} className="details__content__head">
-							<h1 className="details__content__head__title">{seriesData.title}</h1>
+							<h1 className="details__content__head__title">{seriesData.name}</h1>
 							<p className="details__content__head__time">
-								<span className="details__content__head__time__icon"><MdTimer /></span> {seriesData.runtime} min
+								<span className="details__content__head__time__icon"><MdTimer /></span> {seriesData.episode_runtime} min
 							</p>
 							<p className="details__content__head__credit">Directors <span>placeholder</span></p>
 							<p className="details__content__head__credit">Written <span>placeholder</span></p>

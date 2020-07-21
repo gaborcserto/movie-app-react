@@ -19,7 +19,6 @@ const FetchingData = (urlParams) => {
 		URL = `${process.env.REACT_APP_TMDB_API_URL}${urlParams.queryType}/${urlParams.listType}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&page=${urlParams.page}`;
 	}
 
-	console.log(URL);
 	useEffect(() => {
 		const doFetch = async () => {
 			setLoading(true);

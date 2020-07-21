@@ -9,8 +9,9 @@ import { useParams } from "react-router-dom";
 const SearchPage = props => {
 	const [ searched, setSearched ] = useState(null);
 	const [ results, setResults ] = useState(0);
-	const [ totalPages, setTotalPages ] = useState(null)
+	//const [ totalPages, setTotalPages ] = useState(null)
 
+	let listItems;
 	const params = useParams();
 
 	const searchData = fetchingData({
@@ -21,22 +22,18 @@ const SearchPage = props => {
 
 	useEffect(() => {
 		if (searchData.response !== null) {
-			console.log(searchData);
 			setSearched(searchData.response);
 			setResults(searchData.response.total_results);
-			setTotalPages(searchData.response.total_pages);
+			//setTotalPages(searchData.response.total_pages);
 		}
 	}, [searchData.response]);
-
-
-	let listItems;
 
 	if(searchData.loading || !searchData.response) {
 		listItems = <Loading />;
 	} else {
 		listItems = searched.results.map((value, index) => (
-			<Col className="searchResult__col" key={`${index}-${value.title}`} sm={12} md={6} lg={3}>
-				<MovieCard key={index} card={value}/>
+			<Col className="searchResult__col" key={`${index}-${value.id}`} sm={12} md={6} lg={3}>
+				<MovieCard key={index} card={value} type={params.type} />
 			</Col>
 		));
 	}

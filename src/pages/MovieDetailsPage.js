@@ -45,6 +45,7 @@ const MovieDetailsPage = () => {
 								width={200}
 								height={300}
 								type="w200"
+								styled="details__content__poster__image"
 								title={movieData.title}
 								text="No Image"/>
 						</Col>
