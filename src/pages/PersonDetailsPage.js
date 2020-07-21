@@ -25,7 +25,6 @@ const PersonDetailsPage = () => {
 	}, [details.response]);
 
 	if(personData) {
-		console.log(personData);
 		personDetails = (
 			<React.Fragment>
 				<div className="person details__background" />

@@ -1,0 +1,48 @@
+.cast {
+	margin-top: 20px;
+
+	&__title {
+		border-left: 10px solid $primary;
+		color: $gray-1;
+		margin-bottom: 20px;
+		padding-left: 5px;
+	}
+
+	&__col {
+		margin-bottom: 20px;
+	}
+
+	&__link {
+		display: block;
+		transition: transform;
+		transition-duration: 0.25s;
+
+		&__data {
+			text-align: center;
+
+			&__image {
+				@include soft-shadow($black);
+				@include border-radius( 0.4rem);
+				transition: filter;
+				transition-duration: 0.25s;
+			}
+
+			&__name {
+				color: $gray-1;
+				font-size: 14px;
+				font-weight: bold;
+				margin-bottom: 0;
+			}
+
+			&__character {
+				color: $gray-1;
+				font-size: 10px;
+			}
+		}
+
+		&:hover {
+			@include transform(scale(1.08));
+			text-decoration: none
+		}
+	}
+}

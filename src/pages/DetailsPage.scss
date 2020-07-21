@@ -67,7 +67,7 @@
 			}
 
 			&__title {
-				font-size: 50px;
+				font-size: 32px;
 			}
 
 			&__time {
@@ -95,6 +95,35 @@
 				span {
 					font-size: 14px;
 					font-weight: normal;
+				}
+			}
+
+			.person-link {
+				@include link-variant($primary);
+				margin-right: 10px;
+
+
+				&:after {
+					content: ',';
+				}
+
+				&:last-child {
+					&:after{
+						content: '';
+					}
+				}
+			}
+
+			.genres {
+				margin-right: 10px;
+				&:after {
+					content: ',';
+				}
+
+				&:last-child {
+					&:after{
+						content: '';
+					}
 				}
 			}
 		}
@@ -154,10 +183,6 @@
 					padding-bottom: 20px;
 				}
 			}
-		}
-
-		&.person {
-			margin-top: 0;
 		}
 	}
 }

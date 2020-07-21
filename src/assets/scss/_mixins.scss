@@ -20,6 +20,20 @@
 	}
 }
 
+@mixin link-variant ($color) {
+	color: $color;
+
+	&.focus,
+	&:hover,
+	&:focus {
+		color: darken($color,8%);
+	}
+
+	&:active {
+		color: darken($color,25%);
+	}
+}
+
 @mixin ripple($color1, $color2) {
 	position: relative;
 	overflow: hidden;

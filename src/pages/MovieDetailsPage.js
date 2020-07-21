@@ -2,11 +2,15 @@ import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { Col, Row } from 'react-bootstrap';
 import { MdTimer } from 'react-icons/md'
-import testCredits from '../mock/movieCredits';
 import fetchingData from '../hooks/FetchingData';
 import NoDetails from '../components/Details/NoDetails';
 import PlotDetails from '../components/Details/PlotDetails';
 import Img from '../components/ImgLoader'
+import GenresDetails from "../components/Details/GenresDetails";
+import PersonLinkDetails from "../components/Details/PersonLinkDetails";
+import CastDetails from '../components/Details/CastDetails';
+import moment from 'moment';
+import currencyFormatter from 'currency-formatter';
 
 const MovieDetailsPage = () => {
 	let movieDetails;
@@ -20,13 +24,27 @@ const MovieDetailsPage = () => {
 		detailsID: params.id
 	});
 
+	const credits = fetchingData({
+		queryType: 'movie',
+		creditsID: params.id
+	});
+
 	useEffect(() => {
 		if (details.response !== null) {
 			setMovieData(details.response);
-			setMovieCredits(testCredits);
 		}
-	}, [details.response]);
+		if (credits.response !== null) {
+			setMovieCredits(credits.response);
+		}
+	}, [details.response, credits.response]);
 
+	const convertRuntime = num => {
+		let hours = num / 60;
+		let convertHours = Math.floor(hours);
+		let minutes = (hours - convertHours) * 60;
+		let convertMinutes = Math.round(minutes);
+		return `${convertHours}h ${convertMinutes}min`;
+	};
 
 	let background = null;
 
@@ -52,21 +70,22 @@ const MovieDetailsPage = () => {
 						<Col sm={12} md={9} className="details__content__head">
 							<h1 className="details__content__head__title">{movieData.title}</h1>
 							<p className="details__content__head__time">
-								<span className="details__content__head__time__icon"><MdTimer /></span> {movieData.runtime} min
+								<span className="details__content__head__time__icon"><MdTimer /></span> {convertRuntime(movieData.runtime)}
 							</p>
-							<p className="details__content__head__credit">Directors <span>placeholder</span></p>
-							<p className="details__content__head__credit">Written <span>placeholder</span></p>
+							<p className="details__content__head__credit">Genres <span><GenresDetails data={movieData.genres} /></span></p>
+							<p className="details__content__head__credit">Directors <span><PersonLinkDetails type="director" fullData={movieCredits.crew}/></span></p>
+							<p className="details__content__head__credit">Written <span><PersonLinkDetails type="writer" fullData={movieCredits.crew} /></span></p>
 						</Col>
 					</Row>
 					<div className="details__content__body">
 						<Row>
 							<Col sm={12} md={3} className="details__content__body__short">
 								<h3>Release date</h3>
-								<p>{movieData.release_date}</p>
+								<p>{moment(movieData.release_date).format('D MMMM YYYY')}</p>
 								<h3>Status</h3>
 								<p>{movieData.status}</p>
 								<h3>Revenue</h3>
-								<p>{movieData.revenue > 0 ? movieData.revenue : 'N/A' }</p>
+								<p>{movieData.revenue > 0 ? currencyFormatter.format(movieData.revenue, { code: 'USD', decimalDigits: 0 }) : 'N/A' }</p>
 								<h3>Official website</h3>
 								<a
 									href={movieData.homepage}
@@ -82,9 +101,7 @@ const MovieDetailsPage = () => {
 							</Col>
 						</Row>
 					</div>
-					<div className="details__content__credits">
-						<h2 className="details__content__credits__title">Credits</h2>
-					</div>
+					<CastDetails title="Cast" data={movieCredits.cast} number={12}/>
 				</div>
 			</React.Fragment>
 		)
