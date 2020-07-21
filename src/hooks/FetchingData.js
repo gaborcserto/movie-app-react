@@ -12,13 +12,12 @@ const FetchingData = (urlParams) => {
 	if(urlParams.OMDB) {
 		URL = `${process.env.REACT_APP_OMDB_API_URL}?apikey=${process.env.REACT_APP_OMDB_API_KEY}&i=${urlParams.imdbID}`;
 	} else if (urlParams.detailsID) {
-		URL = `${process.env.REACT_APP_TMDB_API_URL}${urlParams.queryType}/${urlParams.detailsID}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=${urlParams.language}`;
+		URL = `${process.env.REACT_APP_TMDB_API_URL}${urlParams.queryType}/${urlParams.detailsID}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
 	} else {
-		URL = `${process.env.REACT_APP_TMDB_API_URL}${urlParams.queryType}/${urlParams.listType}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=${urlParams.language}&page=${urlParams.page}`;
+		URL = `${process.env.REACT_APP_TMDB_API_URL}${urlParams.queryType}/${urlParams.listType}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&page=${urlParams.page}`;
 	}
 
-
-	console.log(URL);
+	//console.log(URL);
 	useEffect(() => {
 		const doFetch = async () => {
 			setLoading(true);

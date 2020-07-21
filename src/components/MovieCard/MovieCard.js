@@ -1,10 +1,14 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { generateCustomPlaceholderURL } from "react-placeholder-image";
+import Img from "../ImgLoader";
 
 const MovieCard = ({ card }) => {
-	console.log(card);
-	let poster = 'https://via.placeholder.com/200x300?text=No+Image';
+	let poster = generateCustomPlaceholderURL(200, 300, {
+		textColor: '#ffffff',
+		text: 'No Image',
+	});
 	let link = `/movie_details/${card.id}`;
 	let title = card.title
 
@@ -17,17 +21,21 @@ const MovieCard = ({ card }) => {
 
 	return (
 		<Link
+			className="Card"
 			to={link}>
 			<Card
 				className="movieCard"
 			    bg="transparent"
 				text="dark">
-				<Card.Img
-					className="movieCard__img"
-					variant="top"
+				<Img
+					styled="card-img-top movieCard__img"
+					src={card.poster_path}
+					width={200}
+					height={300}
+					type="w500"
 					alt={`The movie titled: ${title}`}
 					title={title}
-					src={poster} />
+					text="No Image"/>
 				<Card.Body className="movieCard__body">
 					<Card.Text className="movieCard__body__text">{title}</Card.Text>
 				</Card.Body>

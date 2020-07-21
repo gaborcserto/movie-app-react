@@ -98,6 +98,12 @@
 		&__body {
 			color: $gray-1;
 
+			@include media-breakpoint-up(lg) {
+				margin-top: -100px;
+			}
+
+
+
 			&__plot {
 				&__tagline {
 					font-size: 18px;
@@ -132,6 +138,10 @@
 					color: $primary;
 					font-size: 12px;
 					font-weight: bold;
+				}
+
+				@include media-breakpoint-up(lg) {
+					padding-top: 130px;
 				}
 
 				@include media-breakpoint-down(sm) {

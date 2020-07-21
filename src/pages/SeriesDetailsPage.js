@@ -2,12 +2,12 @@ import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { Col, Row } from 'react-bootstrap';
 import { MdTimer } from 'react-icons/md'
-import testCredits from '../mock/movieCredits';
 import fetchingData from "../hooks/FetchingData";
-import Loading from "../components/Loading";
+import NoDetails from "../components/Details/NoDetails"
+import Img from '../components/ImgLoader'
 
 const SeriesDetailsPage = props => {
-	let movieDetails;
+	let seriesDetails;
 	const params = useParams();
 
 	const [seriesData, setSeriesData] = useState(null);
@@ -15,7 +15,6 @@ const SeriesDetailsPage = props => {
 
 	const details = fetchingData({
 		queryType: 'tv',
-		language: 'en-US',
 		detailsID: params.id
 	});
 
@@ -26,20 +25,23 @@ const SeriesDetailsPage = props => {
 		}
 	}, [details.response]);
 
-
+	console.log(details.response);
 
 	if(seriesData) {
-		const background = {
-			backgroundImage: `url(https://image.tmdb.org/t/p/original${seriesData.backdrop_path})`,
-		}
-
-		movieDetails = (
+		seriesDetails = (
 			<React.Fragment>
-				<div className="details__background" style={background} />
+				<div className="details__background"
+				     style={{backgroundImage: `url(https://image.tmdb.org/t/p/original${seriesData.backdrop_path})`}} />
 				<div className="details__content">
 					<Row>
 						<Col sm={12} md={3} className="details__content__poster">
-							<img src={`https://image.tmdb.org/t/p/w200${seriesData.poster_path}`} alt="" />
+							<Img
+								src={seriesData.poster_path}
+								width={200}
+								height={300}
+								type="w200"
+								title={seriesData.title}
+								text="No Image"/>
 						</Col>
 						<Col sm={12} md={9} className="details__content__head">
 							<h1 className="details__content__head__title">{seriesData.title}</h1>
@@ -80,19 +82,15 @@ const SeriesDetailsPage = props => {
 			</React.Fragment>
 		)
 	} else {
-		movieDetails = (
-			<React.Fragment>
-				<h2 className="mainContent__title">Details</h2>
-				<Loading />
-			</React.Fragment>
-
+		seriesDetails = (
+			<NoDetails />
 		)
 	}
 
 
 	return (
 		<React.Fragment>
-			{movieDetails}
+			{seriesDetails}
 		</React.Fragment>
 	)
 }

@@ -8,6 +8,7 @@ import HomePage from '../pages/HomePage';
 import ListPage from '../pages/ListPage';
 import SearchPage from '../pages/SearchPage';
 import MovieDetailsPage from '../pages/MovieDetailsPage';
+import SeriesDetailsPage from '../pages/SeriesDetailsPage';
 import ErrorPage from '../pages/ErrorPage';
 import fetchingData from '../hooks/FetchingData';
 import movieData from '../mock/movieData';
@@ -15,7 +16,6 @@ import movieData from '../mock/movieData';
 
 function App() {
     const [page, setPage] = useState(1);
-    const [language, setLanguage] = useState("en-US");
 
     const [ nowPlayingMovies, setNowPlayingMovies ] = useState(null);
     const [ popularMovies, setPopularMovies ] = useState(null);
@@ -34,28 +34,24 @@ function App() {
     const popularData = fetchingData({
         queryType: 'movie',
         listType: 'popular',
-        language: language,
         page: page
     });
 
     const nowPlayingData = fetchingData({
         queryType: 'movie',
         listType: 'now_playing',
-        language: language,
         page: page
     });
 
     const upcomingData = fetchingData({
         queryType: 'movie',
         listType: 'upcoming',
-        language: language,
         page: page
     });
 
     const popularSeriesData = fetchingData({
         queryType: 'tv',
         listType: 'popular',
-        language: language,
         page: page
     });
 
@@ -105,7 +101,7 @@ function App() {
                                 type="now_playing"/>
                         </Route>
                         <Route exact path="/movie_details/:id" component={MovieDetailsPage} />
-                        <Route exact path="/series_details/:id" component={MovieDetailsPage} />
+                        <Route exact path="/series_details/:id" component={SeriesDetailsPage} />
                         <Route exact path="/">
                             <HomePage
                                 upcomingMoviesData={upcomingMovies}

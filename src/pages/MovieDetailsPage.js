@@ -4,9 +4,10 @@ import { Col, Row } from 'react-bootstrap';
 import { MdTimer } from 'react-icons/md'
 import testCredits from '../mock/movieCredits';
 import fetchingData from "../hooks/FetchingData";
-import Loading from "../components/Loading";
+import NoDetails from "../components/Details/NoDetails"
+import Img from '../components/ImgLoader'
 
-const MovieDetailsPage = props => {
+const MovieDetailsPage = () => {
 	let movieDetails;
 	const params = useParams();
 
@@ -15,7 +16,6 @@ const MovieDetailsPage = props => {
 
 	const details = fetchingData({
 		queryType: 'movie',
-		language: 'en',
 		detailsID: params.id
 	});
 
@@ -29,19 +29,25 @@ const MovieDetailsPage = props => {
 	}, [details.response]);
 
 
+	let background = null;
 
 	if(movieData && movieCredits) {
-		const background = {
-			backgroundImage: `url(https://image.tmdb.org/t/p/original${movieData.backdrop_path})`,
-		}
+		if(movieData.backdrop_path !== null) background = {backgroundImage: `url(https://image.tmdb.org/t/p/original${movieData.backdrop_path})`};
 
 		movieDetails = (
 			<React.Fragment>
-				<div className="details__background" style={background} />
+				<div className="details__background"
+				     style={background} />
 				<div className="details__content">
 					<Row>
 						<Col sm={12} md={3} className="details__content__poster">
-							<img src={`https://image.tmdb.org/t/p/w200${movieData.poster_path}`} alt="" />
+							<Img
+								src={movieData.poster_path}
+								width={200}
+								height={300}
+								type="w200"
+								title={movieData.title}
+								text="No Image"/>
 						</Col>
 						<Col sm={12} md={9} className="details__content__head">
 							<h1 className="details__content__head__title">{movieData.title}</h1>
@@ -83,11 +89,7 @@ const MovieDetailsPage = props => {
 		)
 	} else {
 		movieDetails = (
-			<React.Fragment>
-				<h2 className="mainContent__title">Details</h2>
-				<Loading />
-			</React.Fragment>
-
+			<NoDetails />
 		)
 	}
 
