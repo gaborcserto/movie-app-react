@@ -1,5 +1,5 @@
 import React, { useEffect, useState,  Suspense} from 'react';
-import { Route, Switch,  useHistory } from 'react-router-dom';
+import { Route, BrowserRouter,  useHistory } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import Loading from '../components/Loading';
 import { Container } from 'react-bootstrap';
@@ -82,7 +82,7 @@ function App() {
             />
             <Container className="mainContent">
                 <Suspense fallback={<Loading />}/>
-                <Switch>
+                <BrowserRouter basename="/movie-app-react">
                     <Route path="/upcoming">
                         <ListPage
                             listData={upcomingMovies}
@@ -122,7 +122,7 @@ function App() {
                             type="search"/>
                     </Route>
                     <Route component={ErrorPage} />
-                </Switch>
+                </BrowserRouter>
             </Container>
             <footer>
                 <p><FaReact /> <FaBootstrap /></p>
