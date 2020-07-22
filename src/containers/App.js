@@ -1,5 +1,5 @@
 import React, { useEffect, useState,  Suspense} from 'react';
-import { Route, BrowserRouter,  useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import Loading from '../components/Loading';
 import { Container } from 'react-bootstrap';
@@ -61,10 +61,10 @@ function App() {
 
     useEffect(() => {
         if (popularData.response !== null) {
-            setUpcomingMovies(popularData.response);
+            setPopularMovies(popularData.response);
         }
         if (upcomingData.response !== null) {
-            setPopularMovies(upcomingData.response);
+            setUpcomingMovies(upcomingData.response);
         }
         if (nowPlayingData.response !== null) {
             setNowPlayingMovies(nowPlayingData.response);
@@ -82,7 +82,7 @@ function App() {
             />
             <Container className="mainContent">
                 <Suspense fallback={<Loading />}/>
-                <BrowserRouter basename="/movie-app-react">
+                <Switch>
                     <Route path="/upcoming">
                         <ListPage
                             listData={upcomingMovies}
@@ -104,9 +104,9 @@ function App() {
                             title="Now Playing Movies"
                             type="now_playing"/>
                     </Route>
-                    <Route exact path="/movie_details/:id" component={MovieDetailsPage} />
-                    <Route exact path="/series_details/:id" component={SeriesDetailsPage} />
-                    <Route exact path="/person_details/:id" component={PersonDetailsPage} />
+                    <Route path="/movie_details/:id" component={MovieDetailsPage} />
+                    <Route path="/series_details/:id" component={SeriesDetailsPage} />
+                    <Route path="/person_details/:id" component={PersonDetailsPage} />
                     <Route exact path="/">
                         <HomePage
                             upcomingMoviesData={upcomingMovies}
@@ -122,7 +122,7 @@ function App() {
                             type="search"/>
                     </Route>
                     <Route component={ErrorPage} />
-                </BrowserRouter>
+                </Switch>
             </Container>
             <footer>
                 <p><FaReact /> <FaBootstrap /></p>

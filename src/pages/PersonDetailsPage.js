@@ -31,7 +31,7 @@ const PersonDetailsPage = () => {
 				<div className="person details__background" />
 				<div className="person details__content">
 					<Row>
-						<Col sm={12} md={3} className="details__content__poster">
+						<Col xs={6} md={3} className="details__content__poster">
 							<Img
 								src={personData.profile_path}
 								width={210}

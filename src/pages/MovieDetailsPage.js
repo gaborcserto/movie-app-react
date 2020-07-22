@@ -57,7 +57,7 @@ const MovieDetailsPage = () => {
 				     style={background} />
 				<div className="movie details__content">
 					<Row>
-						<Col sm={12} md={3} className="details__content__poster">
+						<Col xs={6} md={3} className="details__content__poster">
 							<Img
 								src={movieData.poster_path}
 								width={200}

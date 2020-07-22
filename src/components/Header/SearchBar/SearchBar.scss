@@ -1,7 +1,13 @@
 
 .SearchBar {
 	height: calc(38px + 10rem);
-	padding: 5rem;
+	padding: 5rem 15px 0;
+	width: 100%;
+	margin: 0 auto;
+
+	@include media-breakpoint-down(lg) {
+		padding-top: 70px;
+	}
 
 	&__select {
 		display: inline-block;

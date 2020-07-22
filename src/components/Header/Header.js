@@ -5,11 +5,20 @@ import { NavLink, withRouter } from 'react-router-dom';
 import { RiMovie2Line } from "react-icons/ri";
 
 const Header = (props) => {
-	const path = window.location.pathname.slice(1);
 	let detailsStyle = '';
 	let noSearch = false;
 
-	if ((/details/).test(path)) {
+	if ((/movie_details/).test(document.URL)) {
+		detailsStyle = ' details';
+		noSearch = true;
+	}
+
+	if ((/person_details/).test(document.URL)) {
+		detailsStyle = ' details';
+		noSearch = true;
+	}
+
+	if ((/series_details/).test(document.URL)) {
 		detailsStyle = ' details';
 		noSearch = true;
 	}
@@ -23,7 +32,7 @@ const Header = (props) => {
 			<Navbar
 				className="header__navBar"
 				sticky="top"
-				expand="lg"
+				expand="md"
 				bg="transparent"
 				variant="dark">
 				<NavLink className="navbar-brand" variant="danger" exact to="/">

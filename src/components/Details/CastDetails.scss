@@ -23,6 +23,7 @@
 			&__image {
 				@include soft-shadow($black);
 				@include border-radius( 0.4rem);
+				max-width: 100%;
 				transition: filter;
 				transition-duration: 0.25s;
 			}

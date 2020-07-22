@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import Img from "../ImgLoader";
 
 const MovieCard = ({ card, type }) => {
-	console.log(card);
-
 	let link = `/movie_details/${card.id}`;
 	let title = card.title
 	let poster = card.poster_path

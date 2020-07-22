@@ -43,7 +43,7 @@ const SeriesDetailsPage = props => {
 				<div className="details__background" style={{backgroundImage: `url(https://image.tmdb.org/t/p/original${seriesData.backdrop_path})`}} />
 				<div className="series details__content">
 					<Row>
-						<Col sm={12} md={3} className="details__content__poster">
+						<Col xs={6} md={3} className="details__content__poster">
 							<Img
 								src={seriesData.poster_path}
 								width={200}

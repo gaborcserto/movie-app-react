@@ -7,15 +7,15 @@ const castDetails = props => {
 	let cast = 'N/A';
 
 	const template = (data, index) => (
-		<Col sm={6} md={3} lg={2} key={index} className="cast__col">
+		<Col xs={6} md={3} lg={2} key={index} className="cast__col">
 			<Link
 				className="cast__link"
 				to={`/person_details/${data.id}`}>
 				<div className="cast__link__data">
 					<Img
 						src={data.profile_path}
-						width={160}
-						height={240}
+						width={350}
+						height={520}
 						type="w200"
 						styled="cast__link__data__image"
 						title={data.name}
