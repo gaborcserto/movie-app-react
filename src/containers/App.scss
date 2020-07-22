@@ -6,6 +6,7 @@
 
 .mainContent {
 	color: $gray-1;
+	min-height: calc(100vh - 220px);
 
 	&__title {
 		border-bottom: 1px solid $gray-2;
@@ -74,5 +75,29 @@
 				}
 			}
 		}
+	}
+}
+
+footer {
+	color: $primary;
+	background: $gray-1;
+	box-shadow: 0 -1px 1px rgba($black, .08),
+	0 -2px 2px rgba($black, .12),
+	0 -4px 4px rgba($black, .16),
+	0 -8px 8px rgba($black, .20);
+	min-height: 100px;
+	font-size: 20px;
+	height: 50px;
+	margin-top: 20px;
+	text-align: center;
+
+	&:before {
+		content: '\00a0';
+		background-image:
+				radial-gradient(at 50% 0, #1c1b21 0%, #dc3545 50%, transparent 75%);
+		background-size: 100% 2px;
+		background-repeat: no-repeat;
+		float:left;
+		width:100%;
 	}
 }

@@ -6,7 +6,7 @@ const genresDetails = props => {
 	if (props.data) {
 		genres = props.data.map((value, index) => (
 			<span
-				className="genres"
+				className="genres badge badge-pill badge-dark"
 				key={index}>
 			{value.name}
 		</span>

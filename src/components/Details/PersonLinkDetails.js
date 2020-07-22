@@ -22,7 +22,6 @@ const personLinkDetails = props => {
 	}
 
 	if(props.type === 'writer') {
-		console.log(props.fullData);
 		data = props.fullData.filter( occupation => (
 			occupation.department === 'Writing'	&&
 			(occupation.job === 'Screenplay' || occupation.job === 'Writer')

@@ -25,6 +25,7 @@ const PersonDetailsPage = () => {
 	}, [details.response]);
 
 	if(personData) {
+
 		personDetails = (
 			<React.Fragment>
 				<div className="person details__background" />
@@ -42,7 +43,10 @@ const PersonDetailsPage = () => {
 						</Col>
 						<Col sm={12} md={9} className="details__content__head">
 							<h1 className="details__content__head__title">{personData.name}</h1>
-							<p className="details__content__head__credit">Born <span>{moment(personData.birthday).format('MMM D, YYYY')} in {personData.place_of_birth}</span></p>
+							<p className="details__content__head__credit">Born	<span>
+								{personData.birthday ? moment(personData.birthday).format('MMM D, YYYY') : 'N/A'} in {personData.place_of_birth ? personData.place_of_birth : 'N/A'}
+							</span>
+							</p>
 							{personData.deathday ? <p className="details__content__head__credit">Death <span>{moment(personData.deathday).format('MMM D, YYYY')}</span></p> : null}
 							<p className="details__content__head__credit">Know for <span>{personData.known_for_department}</span></p>
 						</Col>

@@ -3,7 +3,7 @@ import { Route, Switch,  useHistory } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import Loading from '../components/Loading';
 import { Container } from 'react-bootstrap';
-
+import { FaReact, FaBootstrap } from 'react-icons/fa'
 import HomePage from '../pages/HomePage';
 import ListPage from '../pages/ListPage';
 import SearchPage from '../pages/SearchPage';
@@ -76,55 +76,57 @@ function App() {
 
     return (
         <div className="App">
-                <Header
-                    title="Movie Search"
-                    search={getSearch}
-                />
-                <Container className="mainContent">
-                    <Suspense fallback={<Loading />}/>
-                    <Switch>
-                        <Route path="/upcoming">
-                            <ListPage
-                                listData={upcomingMovies}
-                                title="Upcoming Movies"
-                                loading={upcomingData.loading}
-                                type="upcoming"/>
-                        </Route>
-                        <Route path="/popular">
-                            <ListPage
-                                listData={popularMovies}
-                                loading={popularData.loading}
-                                title="Popular Movies"
-                                type="popular"/>
-                        </Route>
-                        <Route path="/now_playing">
-                            <ListPage
-                                listData={nowPlayingMovies}
-                                loading={nowPlayingData.loading}
-                                title="Now Playing Movies"
-                                type="now_playing"/>
-                        </Route>
-                        <Route exact path="/movie_details/:id" component={MovieDetailsPage} />
-                        <Route exact path="/series_details/:id" component={SeriesDetailsPage} />
-                        <Route exact path="/person_details/:id" component={PersonDetailsPage} />
-                        <Route exact path="/">
-                            <HomePage
-                                upcomingMoviesData={upcomingMovies}
-                                popularMoviesData={popularMovies}
-                                nowPlayingMoviesData={nowPlayingMovies}
-                                popularSeriesData={popularSeries}
-                                number={10}/>
-                        </Route>
-                        <Route path="/search/:type/:query">
-                            <SearchPage
-                                page={1}
-                                title="Search"
-                                type="search"/>
-                        </Route>
-                        <Route component={ErrorPage} />
-                    </Switch>
-                </Container>
-
+            <Header
+                title="Movie Search"
+                search={getSearch}
+            />
+            <Container className="mainContent">
+                <Suspense fallback={<Loading />}/>
+                <Switch>
+                    <Route path="/upcoming">
+                        <ListPage
+                            listData={upcomingMovies}
+                            title="Upcoming Movies"
+                            loading={upcomingData.loading}
+                            type="upcoming"/>
+                    </Route>
+                    <Route path="/popular">
+                        <ListPage
+                            listData={popularMovies}
+                            loading={popularData.loading}
+                            title="Popular Movies"
+                            type="popular"/>
+                    </Route>
+                    <Route path="/now_playing">
+                        <ListPage
+                            listData={nowPlayingMovies}
+                            loading={nowPlayingData.loading}
+                            title="Now Playing Movies"
+                            type="now_playing"/>
+                    </Route>
+                    <Route exact path="/movie_details/:id" component={MovieDetailsPage} />
+                    <Route exact path="/series_details/:id" component={SeriesDetailsPage} />
+                    <Route exact path="/person_details/:id" component={PersonDetailsPage} />
+                    <Route exact path="/">
+                        <HomePage
+                            upcomingMoviesData={upcomingMovies}
+                            popularMoviesData={popularMovies}
+                            nowPlayingMoviesData={nowPlayingMovies}
+                            popularSeriesData={popularSeries}
+                            number={10}/>
+                    </Route>
+                    <Route path="/search/:type/:query">
+                        <SearchPage
+                            page={1}
+                            title="Search"
+                            type="search"/>
+                    </Route>
+                    <Route component={ErrorPage} />
+                </Switch>
+            </Container>
+            <footer>
+                <p><FaReact /> <FaBootstrap /></p>
+            </footer>
         </div>
     );
 }
