@@ -10,6 +10,7 @@ import GenresDetails from '../components/Details/GenresDetails';
 import PersonLinkDetails from '../components/Details/PersonLinkDetails'
 import moment from "moment";
 import CastDetails from "../components/Details/CastDetails";
+import Rating from "../components/Rating/Rating";
 
 const SeriesDetailsPage = props => {
 	let seriesDetails;
@@ -82,6 +83,12 @@ const SeriesDetailsPage = props => {
 									target="_blank">Link</a>
 							</Col>
 							<Col sm={12} md={9} className="details__content__body__plot">
+								<Rating
+									title="Rating"
+									id={seriesData.imdb_id}
+									imdb={true}
+									meta={true}
+									tmdb={seriesData.vote_average}/>
 								<PlotDetails
 									tagline={seriesData.tagline}
 									title="Plot"

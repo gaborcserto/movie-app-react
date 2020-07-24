@@ -1,0 +1,53 @@
+.rating {
+	min-height: 100px;
+	min-width: 100px;
+
+	.imdb,
+	.metascore,
+	.tmdb {
+		display: inline-block;
+		height: 100%;
+		text-align: center;
+		width: 200px;
+
+
+		.circleRating {
+			@include horizontal-align;
+			height: 100px;
+			margin: 0;
+			width: 100px;
+
+			svg {
+
+			}
+
+			&__donut-ring {
+				stroke: $gray-8;
+				stroke-width: 2;
+			}
+
+			&__donut-segment {
+				stroke: $danger;
+				stroke-width: 2;
+			}
+
+			&__chart {
+				display: block;
+				margin: 0 auto;
+				text-align: center;
+
+				&__number {
+					@include center-align-absolute;
+					display: block;
+					font-size: 34px;
+					font-weight: bold;
+				}
+			}
+
+			&__label {
+				font-size: 12px;
+				display: block;
+			}
+		}
+	}
+}

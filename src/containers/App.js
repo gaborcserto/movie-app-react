@@ -2,6 +2,7 @@ import React, { useEffect, useState,  Suspense} from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import Loading from '../components/Loading';
+import ScrollToTop from '../components/ScrollToTop';
 import { Container } from 'react-bootstrap';
 import { FaReact, FaBootstrap } from 'react-icons/fa'
 import HomePage from '../pages/HomePage';
@@ -82,6 +83,7 @@ function App() {
             />
             <Container className="mainContent">
                 <Suspense fallback={<Loading />}/>
+                <ScrollToTop />
                 <Switch>
                     <Route path="/upcoming">
                         <ListPage

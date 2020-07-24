@@ -9,6 +9,7 @@ import Img from '../components/ImgLoader'
 import GenresDetails from "../components/Details/GenresDetails";
 import PersonLinkDetails from "../components/Details/PersonLinkDetails";
 import CastDetails from '../components/Details/CastDetails';
+import Rating from '../components/Rating/Rating';
 import moment from 'moment';
 import currencyFormatter from 'currency-formatter';
 
@@ -43,12 +44,14 @@ const MovieDetailsPage = () => {
 		let convertHours = Math.floor(hours);
 		let minutes = (hours - convertHours) * 60;
 		let convertMinutes = Math.round(minutes);
-		return `${convertHours}h ${convertMinutes}min`;
+		return `${convertHours}hr ${convertMinutes}min`;
 	};
 
 	let background = null;
 
 	if(movieData && movieCredits) {
+
+		console.log(movieData);
 		if(movieData.backdrop_path !== null) background = {backgroundImage: `url(https://image.tmdb.org/t/p/original${movieData.backdrop_path})`};
 
 		movieDetails = (
@@ -84,6 +87,8 @@ const MovieDetailsPage = () => {
 								<p>{moment(movieData.release_date).format('D MMMM YYYY')}</p>
 								<h3>Status</h3>
 								<p>{movieData.status}</p>
+								<h3>Budget</h3>
+								<p>{movieData.budget > 0 ? currencyFormatter.format(movieData.budget, { code: 'USD', decimalDigits: 0 }) : 'N/A' }</p>
 								<h3>Revenue</h3>
 								<p>{movieData.revenue > 0 ? currencyFormatter.format(movieData.revenue, { code: 'USD', decimalDigits: 0 }) : 'N/A' }</p>
 								<h3>Official website</h3>
@@ -94,8 +99,14 @@ const MovieDetailsPage = () => {
 									target="_blank">Link</a>
 							</Col>
 							<Col sm={12} md={9} className="details__content__body__plot">
+								<p className="tagline">{movieData.tagline}</p>
+								<Rating
+									title="Rating"
+									id={movieData.imdb_id}
+									imdb={true}
+									meta={true}
+									tmdb={movieData.vote_average}/>
 								<PlotDetails
-									tagline={movieData.tagline}
 									title="Plot"
 									overview={movieData.overview}/>
 							</Col>
