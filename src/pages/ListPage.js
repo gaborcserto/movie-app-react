@@ -1,7 +1,7 @@
 import React from 'react';
-import {Col, Row} from "react-bootstrap";
-import MovieCard from "../components/MovieCard/MovieCard";
-import Loading from "../components/Loading";
+import {Col, Row} from 'react-bootstrap';
+import MovieCard from '../components/MovieCard/MovieCard';
+import Loading from '../components/Loading';
 
 const ListPage = props => {
 

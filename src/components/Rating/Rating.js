@@ -18,8 +18,8 @@ const Rating = props => {
 		}
 	}, [OMDBDetails.response]);
 
-	if(props.imdb && OMDBData && OMDBData.imdbRating > 0) {
-		imdb = (
+	if(props.imdb && OMDBData) {
+		imdb = OMDBData.imdbRating > 0 ? (
 			<Col sm={4} className="imdb">
 				<CircleRating
 					innerText="IMDB"
@@ -29,11 +29,11 @@ const Rating = props => {
 					decimal={true}
 				/>
 			</Col>
-		)
+		) : null;
 	}
 
-	if(props.meta && OMDBData && OMDBData.Metascore > 0) {
-		meta = (
+	if(props.meta && OMDBData) {
+		meta = OMDBData.Metascore > 0 ? (
 			<Col sm={4} className="metascore">
 				<CircleRating
 					innerText="Metascore"
@@ -42,7 +42,7 @@ const Rating = props => {
 					speed={10}
 				/>
 			</Col>
-		)
+		) : null;
 	}
 
 	if(props.tmdb) {
@@ -56,10 +56,10 @@ const Rating = props => {
 					decimal={true}
 				/>
 			</Col>
-		)
+		);
 	}
 
-	return(
+	return (
 		<React.Fragment>
 			<h2 className="title">{props.title}</h2>
 			<Row className="rating">
@@ -68,7 +68,7 @@ const Rating = props => {
 				{tmdb}
 			</Row>
 		</React.Fragment>
-	)
+	);
 }
 
 export default Rating;

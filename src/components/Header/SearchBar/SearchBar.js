@@ -33,7 +33,7 @@ const SearchBar = (props) => {
 				as="select"
 				value={searchType}>
 				<option value="movie">Movie</option>
-				<option value="tv">Tv</option>
+				<option value="tv">Series</option>
 				<option value="person">Person</option>
 			</FormControl>
 			<FormControl

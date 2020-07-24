@@ -8,9 +8,9 @@ import Img from '../components/ImgLoader'
 import PlotDetails from '../components/Details/PlotDetails';
 import GenresDetails from '../components/Details/GenresDetails';
 import PersonLinkDetails from '../components/Details/PersonLinkDetails'
-import moment from "moment";
-import CastDetails from "../components/Details/CastDetails";
-import Rating from "../components/Rating/Rating";
+import moment from 'moment';
+import CastDetails from '../components/Details/CastDetails';
+import Rating from '../components/Rating/Rating';
 
 const SeriesDetailsPage = props => {
 	let seriesDetails;

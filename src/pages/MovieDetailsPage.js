@@ -51,7 +51,6 @@ const MovieDetailsPage = () => {
 
 	if(movieData && movieCredits) {
 
-		console.log(movieData);
 		if(movieData.backdrop_path !== null) background = {backgroundImage: `url(https://image.tmdb.org/t/p/original${movieData.backdrop_path})`};
 
 		movieDetails = (
