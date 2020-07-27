@@ -11,37 +11,32 @@ import PersonLinkDetails from '../components/Details/PersonLinkDetails'
 import moment from 'moment';
 import CastDetails from '../components/Details/CastDetails';
 import Rating from '../components/Rating/Rating';
+import Carousel from "../components/Carousel";
 
-const SeriesDetailsPage = props => {
+const SeriesDetailsPage = () => {
 	let seriesDetails;
 	const params = useParams();
 
 	const [seriesData, setSeriesData] = useState(null);
-	const [seriesCredits, setSeriesCredits] = useState(null);
 
 	const details = fetchingData({
 		queryType: 'tv',
 		detailsID: params.id
 	});
 
-	const credits = fetchingData({
-		queryType: 'tv',
-		creditsID: params.id
-	});
-
 	useEffect(() => {
 		if (details.response !== null) {
 			setSeriesData(details.response);
 		}
-		if (credits.response !== null) {
-			setSeriesCredits(credits.response);
-		}
-	}, [details.response, credits.response]);
+	}, [details.response]);
 
-	if(seriesData && seriesCredits) {
+	let background = null;
+
+	if(seriesData) {
+		if(seriesData.backdrop_path !== null) background = {backgroundImage: `url(https://image.tmdb.org/t/p/original${seriesData.backdrop_path})`};
 		seriesDetails = (
 			<React.Fragment>
-				<div className="details__background" style={{backgroundImage: `url(https://image.tmdb.org/t/p/original${seriesData.backdrop_path})`}} />
+				<div className="details__background" style={background} />
 				<div className="series details__content">
 					<Row>
 						<Col xs={6} md={3} className="details__content__poster">
@@ -93,9 +88,22 @@ const SeriesDetailsPage = props => {
 									tagline={seriesData.tagline}
 									title="Plot"
 									overview={seriesData.overview}/>
+								<Carousel
+									type="image"
+									className="carousel"
+									alt={seriesData.name}
+									title="Photos"
+									images={seriesData.images.backdrops}/>
+								<Carousel
+									className="carousel"
+									title="Videos"
+									videos={seriesData.videos.results}/>
+								<CastDetails
+									title="Cast"
+									data={seriesData.credits.cast}
+									number={12}/>
 							</Col>
 						</Row>
-						<CastDetails title="Cast" data={seriesCredits.cast} number={12}/>
 					</div>
 				</div>
 			</React.Fragment>

@@ -1,4 +1,5 @@
 @import "~bootstrap/scss/bootstrap";
+@import '~react-alice-carousel/lib/scss/alice-carousel.scss';
 @import './assets/scss/mixins';
 @import './assets/scss/color';
 
@@ -14,6 +15,7 @@
 @import './pages/DetailsPage';
 @import './components/Details/CastDetails';
 @import './components/Rating/Rating';
+@import './components/Carousel';
 @import './pages/ErrorPage';
 
 body {

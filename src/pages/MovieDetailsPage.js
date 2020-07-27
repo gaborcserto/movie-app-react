@@ -10,6 +10,7 @@ import GenresDetails from "../components/Details/GenresDetails";
 import PersonLinkDetails from "../components/Details/PersonLinkDetails";
 import CastDetails from '../components/Details/CastDetails';
 import Rating from '../components/Rating/Rating';
+import Carousel from '../components/Carousel';
 import moment from 'moment';
 import currencyFormatter from 'currency-formatter';
 
@@ -18,26 +19,17 @@ const MovieDetailsPage = () => {
 	const params = useParams();
 
 	const [movieData, setMovieData] = useState(null);
-	const [movieCredits, setMovieCredits] = useState(null);
 
 	const details = fetchingData({
 		queryType: 'movie',
 		detailsID: params.id
 	});
 
-	const credits = fetchingData({
-		queryType: 'movie',
-		creditsID: params.id
-	});
-
 	useEffect(() => {
 		if (details.response !== null) {
 			setMovieData(details.response);
 		}
-		if (credits.response !== null) {
-			setMovieCredits(credits.response);
-		}
-	}, [details.response, credits.response]);
+	}, [details.response]);
 
 	const convertRuntime = num => {
 		let hours = num / 60;
@@ -49,8 +41,8 @@ const MovieDetailsPage = () => {
 
 	let background = null;
 
-	if(movieData && movieCredits) {
-
+	if(movieData) {
+		console.log(movieData);
 		if(movieData.backdrop_path !== null) background = {backgroundImage: `url(https://image.tmdb.org/t/p/original${movieData.backdrop_path})`};
 
 		movieDetails = (
@@ -75,8 +67,8 @@ const MovieDetailsPage = () => {
 								<span className="details__content__head__time__icon"><MdTimer /></span> {convertRuntime(movieData.runtime)}
 							</p>
 							<p className="details__content__head__credit">Genres <span><GenresDetails data={movieData.genres} /></span></p>
-							<p className="details__content__head__credit">Directors <span><PersonLinkDetails type="director" fullData={movieCredits.crew}/></span></p>
-							<p className="details__content__head__credit">Written <span><PersonLinkDetails type="writer" fullData={movieCredits.crew} /></span></p>
+							<p className="details__content__head__credit">Directors <span><PersonLinkDetails type="director" fullData={movieData.credits.crew}/></span></p>
+							<p className="details__content__head__credit">Written <span><PersonLinkDetails type="writer" fullData={movieData.credits.crew} /></span></p>
 						</Col>
 					</Row>
 					<div className="details__content__body">
@@ -108,10 +100,23 @@ const MovieDetailsPage = () => {
 								<PlotDetails
 									title="Plot"
 									overview={movieData.overview}/>
+								<Carousel
+									className="carousel"
+									alt={movieData.title}
+									title="Photos"
+									images={movieData.images.backdrops}/>
+								<Carousel
+									className="carousel"
+									alt={movieData.title}
+									title="Videos"
+									videos={movieData.videos.results}/>
+								<CastDetails
+									title="Cast"
+									data={movieData.credits.cast}
+									number={12}/>
 							</Col>
 						</Row>
 					</div>
-					<CastDetails title="Cast" data={movieCredits.cast} number={12}/>
 				</div>
 			</React.Fragment>
 		)

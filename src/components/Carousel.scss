@@ -1,0 +1,54 @@
+.carousel {
+	&__item {
+		padding: 0 2px;
+		width: 100%;
+
+		&.video {
+			padding-bottom: 56.25%;
+			position: relative;
+
+			iframe {
+				height: 100%;
+				left: 0;
+				position: absolute;
+				top: 0;
+				width: calc(100% - 4px);
+			}
+		}
+	}
+}
+
+.alice-carousel{
+	&__wrapper {
+		margin: 0 -2px;
+		width: calc(100%);
+	}
+
+	&__prev-btn {
+		text-align: left;
+
+		&-item {
+			color: $danger;
+			font-weight: bold;
+
+			&:hover {
+				color: $primary;
+				text-decoration: underline;
+			}
+		}
+	}
+
+	&__next-btn {
+		text-align: right;
+
+		&-item {
+			color: $danger;
+			font-weight: bold;
+
+			&:hover {
+				color: $primary;
+				text-decoration: underline;
+			}
+		}
+	}
+}
