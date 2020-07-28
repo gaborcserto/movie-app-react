@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/movie-app-react/static/css/main.86cd1372.chunk.css",
-    "main.js": "/movie-app-react/static/js/main.9564896d.chunk.js",
-    "main.js.map": "/movie-app-react/static/js/main.9564896d.chunk.js.map",
+    "main.css": "/movie-app-react/static/css/main.fce894a4.chunk.css",
+    "main.js": "/movie-app-react/static/js/main.30d06ea6.chunk.js",
+    "main.js.map": "/movie-app-react/static/js/main.30d06ea6.chunk.js.map",
     "reactPlayerDailyMotion.js": "/movie-app-react/static/js/reactPlayerDailyMotion.2f73e175.chunk.js",
     "reactPlayerDailyMotion.js.map": "/movie-app-react/static/js/reactPlayerDailyMotion.2f73e175.chunk.js.map",
     "reactPlayerFacebook.js": "/movie-app-react/static/js/reactPlayerFacebook.e9a0e656.chunk.js",
@@ -32,16 +32,16 @@
     "static/js/14.47d82480.chunk.js": "/movie-app-react/static/js/14.47d82480.chunk.js",
     "static/js/14.47d82480.chunk.js.map": "/movie-app-react/static/js/14.47d82480.chunk.js.map",
     "index.html": "/movie-app-react/index.html",
-    "precache-manifest.af4740f7183267efba669142e2e9b5b3.js": "/movie-app-react/precache-manifest.af4740f7183267efba669142e2e9b5b3.js",
+    "precache-manifest.590889d8be59005df2796367d2c363ec.js": "/movie-app-react/precache-manifest.590889d8be59005df2796367d2c363ec.js",
     "service-worker.js": "/movie-app-react/service-worker.js",
-    "static/css/main.86cd1372.chunk.css.map": "/movie-app-react/static/css/main.86cd1372.chunk.css.map",
+    "static/css/main.fce894a4.chunk.css.map": "/movie-app-react/static/css/main.fce894a4.chunk.css.map",
     "static/js/14.47d82480.chunk.js.LICENSE.txt": "/movie-app-react/static/js/14.47d82480.chunk.js.LICENSE.txt",
     "static/media/index.scss": "/movie-app-react/static/media/hero.9838b26e.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.cf39e25a.js",
     "static/js/14.47d82480.chunk.js",
-    "static/css/main.86cd1372.chunk.css",
-    "static/js/main.9564896d.chunk.js"
+    "static/css/main.fce894a4.chunk.css",
+    "static/js/main.30d06ea6.chunk.js"
   ]
 }
