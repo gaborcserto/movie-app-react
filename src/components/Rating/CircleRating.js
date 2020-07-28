@@ -21,11 +21,14 @@ const CircleRating = props => {
 	const pace = percentage / props.speed;
 
 	const updatePercentage = useCallback(() => {
-		if (percentage > 0 || progressBar < percentage)	{
+		let isSubscribed = true;
+		if ((percentage > 0 || progressBar < percentage) && isSubscribed ) {
 			setTimeout(() => {
 				setProgressBar(progressBar + 1);
 			}, pace);
 		}
+
+		return () => isSubscribed = false;
 	}, [progressBar, percentage, pace]);
 
 	useEffect(() => {
