@@ -1,9 +1,8 @@
 import React from 'react';
 import AliceCarousel from 'react-alice-carousel';
-import SimpleReactLightbox, {SRLWrapper} from 'simple-react-lightbox';
-import {Link} from 'react-router-dom';
-import {generateCustomPlaceholderURL} from 'react-placeholder-image';
-import ReactPlayer from 'react-player/lazy';
+import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox';
+import { Link } from 'react-router-dom';
+import { generateCustomPlaceholderURL } from 'react-placeholder-image';
 
 const Carousel = props => {
 	const handleOnDragStart = (e) => e.preventDefault();
@@ -97,11 +96,14 @@ const Carousel = props => {
 
 			carouselItems = props.videos.map((video, index) => (
 				<div className="item carousel__item video" key={index}>
-					<ReactPlayer
-						className='react-player'
-						url={`${process.env.REACT_APP_PROXY_URL}https://www.youtube.com/watch?v=${video.key}`}
+					<iframe
+						src={`//www.youtube.com/embed/${video.key}?enablejsapi=1&origin=${window.location.origin}`}
 						width='100%'
 						height='100%'
+						frameBorder='0'
+						allow='autoplay; encrypted-media'
+						allowFullScreen
+						title={video.name}
 					/>
 				</div>
 			));
