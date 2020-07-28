@@ -12,6 +12,9 @@ const Carousel = props => {
 	const handleResponsive = (items) => {
 		if (items.length < 3) {
 			return {
+				0: {
+					items: 1
+				},
 				760: {
 					items: 2
 				}
@@ -24,6 +27,9 @@ const Carousel = props => {
 			};
 		} else {
 			return {
+				0: {
+					items: 1
+				},
 				760: {
 					items: 2
 				},
@@ -86,7 +92,7 @@ const Carousel = props => {
 			</React.Fragment>
 		)
 	} else if ((props.videos && props.videos.length > 0) || (props.credits && props.credits.length > 0)) {
-		if (props.videos) {
+		if (props.videos && props.videos.length > 0) {
 			responsive = handleResponsive(props.videos);
 
 			carouselItems = props.videos.map((video, index) => (

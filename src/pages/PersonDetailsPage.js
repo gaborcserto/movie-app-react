@@ -75,7 +75,7 @@ const PersonDetailsPage = () => {
 							<Col sm={12} md={9} className="details__content__body__plot">
 								<PlotDetails
 									title="Biography"
-									overview={personData.biography}/>
+									overview={ personData.biography ? personData.biography : 'N/A' }/>
 								<Carousel
 									className="carousel"
 									title="Filmography (Actor)"
