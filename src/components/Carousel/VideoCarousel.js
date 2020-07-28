@@ -12,8 +12,7 @@ const videoCarousel = props => {
 		}
 	};
 
-	console.log(props.videos);
-	let carouselItems = props.videos.map((video, index) => (
+	const carouselItems = props.videos.map((video, index) => (
 		<div className="item carousel__item video" key={index}>
 			<iframe
 				src={`//www.youtube.com/embed/${video.key}?enablejsapi=1&origin=${window.location.origin}`}

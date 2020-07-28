@@ -33,6 +33,10 @@ const castsCarousel = props => {
 		}
 	};
 
+	props.credits.sort((a, b) => {
+		return new Date(b.popularity) - new Date(a.popularity);
+	});
+
 	const carouselItems = props.credits.map((cast, index) => (
 		<div className="item carousel__item cast" key={index}>
 			<Link
