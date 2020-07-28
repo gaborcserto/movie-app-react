@@ -68,7 +68,7 @@ const carousel = props => {
 
 	if(props.videos) {
 		responsive = handleResponsive(props.videos);
-		console.log(responsive);
+
 		carouselItems = props.videos.map((video, index) => (
 			<div className="item carousel__item video" key={index}>
 				<iframe
