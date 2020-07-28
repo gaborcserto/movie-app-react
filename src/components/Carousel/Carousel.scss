@@ -21,12 +21,6 @@
 
 			.cast__link {
 				&__data {
-					&__texts {
-						bottom: 0;
-						position: absolute;
-						width: 100%;
-					}
-
 					&__image {
 						align-self: stretch;
 						box-shadow: none;
@@ -43,18 +37,6 @@
 
 					.cast__link__data__image {
 						filter: grayscale(100%);
-					}
-				}
-			}
-
-			@include media-breakpoint-down(sm) {
-				height: 100%;
-
-				.cast__link {
-					&__data {
-						&__texts {
-							position: relative;
-						}
 					}
 				}
 			}
