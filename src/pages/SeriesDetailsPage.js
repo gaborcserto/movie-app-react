@@ -11,7 +11,7 @@ import PersonLinkDetails from '../components/Details/PersonLinkDetails'
 import moment from 'moment';
 import CastDetails from '../components/Details/CastDetails';
 import Rating from '../components/Rating/Rating';
-import Carousel from "../components/Carousel";
+import Carousel from "../components/Carousel/Carousel";
 
 const SeriesDetailsPage = () => {
 	let seriesDetails;

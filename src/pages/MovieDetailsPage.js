@@ -10,7 +10,7 @@ import GenresDetails from "../components/Details/GenresDetails";
 import PersonLinkDetails from "../components/Details/PersonLinkDetails";
 import CastDetails from '../components/Details/CastDetails';
 import Rating from '../components/Rating/Rating';
-import Carousel from '../components/Carousel';
+import Carousel from '../components/Carousel/Carousel';
 import moment from 'moment';
 import currencyFormatter from 'currency-formatter';
 

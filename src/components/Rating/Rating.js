@@ -20,7 +20,7 @@ const Rating = props => {
 
 	if(props.imdb && OMDBData) {
 		imdb = OMDBData.imdbRating > 0 ? (
-			<Col sm={4} className="imdb">
+			<Col xs={6} sm={4} className="imdb">
 				<CircleRating
 					innerText="IMDB"
 					percentage={OMDBData.imdbRating}
@@ -34,7 +34,7 @@ const Rating = props => {
 
 	if(props.meta && OMDBData) {
 		meta = OMDBData.Metascore > 0 ? (
-			<Col sm={4} className="metascore">
+			<Col xs={6} sm={4} className="metascore">
 				<CircleRating
 					innerText="Metascore"
 					percentage={OMDBData.Metascore}
@@ -47,7 +47,7 @@ const Rating = props => {
 
 	if(props.tmdb) {
 		tmdb = (
-			<Col sm={4} className="tmdb">
+			<Col xs={6} sm={4} className="tmdb">
 				<CircleRating
 					innerText="The Movie Database"
 					percentage={props.tmdb}

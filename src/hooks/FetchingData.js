@@ -13,12 +13,16 @@ const FetchingData = (urlParams) => {
 		URL = `${process.env.REACT_APP_OMDB_API_URL}?apikey=${process.env.REACT_APP_OMDB_API_KEY}&i=${urlParams.imdbID}`;
 	} else if (urlParams.detailsID) {
 		URL = `${process.env.REACT_APP_TMDB_API_URL}${urlParams.queryType}/${urlParams.detailsID}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&append_to_response=videos,images,credits`;
+	} else if (urlParams.creditsID) {
+		URL = `${process.env.REACT_APP_TMDB_API_URL}${urlParams.queryType}/${urlParams.creditsID}/combined_credits?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
 	} else if (urlParams.query) {
 		URL = `${process.env.REACT_APP_TMDB_API_URL}search/${urlParams.queryType}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&query=${urlParams.query}&page=${urlParams.page}`;
 	} else if (urlParams.queryType && urlParams.listType) {
 		URL = `${process.env.REACT_APP_TMDB_API_URL}${urlParams.queryType}/${urlParams.listType}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&page=${urlParams.page}`;
 	}
 
+
+	//console.log(URL);
 	useEffect(() => {
 		if(URL !== null) {
 			const doFetch = async () => {

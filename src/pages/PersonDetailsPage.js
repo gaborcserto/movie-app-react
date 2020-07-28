@@ -5,6 +5,7 @@ import fetchingData from '../hooks/FetchingData';
 import NoDetails from '../components/Details/NoDetails';
 import PlotDetails from '../components/Details/PlotDetails';
 import Img from '../components/ImgLoader'
+import Carousel from '../components/Carousel/Carousel';
 import moment from 'moment';
 
 const PersonDetailsPage = () => {
@@ -12,20 +13,28 @@ const PersonDetailsPage = () => {
 	const params = useParams();
 
 	const [personData, setPersonData] = useState(null);
+	const [personCredits, setPersonCredits] = useState(null);
 
 	const details = fetchingData({
 		queryType: 'person',
 		detailsID: params.id
 	});
 
+	const credits = fetchingData({
+		queryType: 'person',
+		creditsID: params.id
+	});
+
 	useEffect(() => {
 		if (details.response !== null) {
 			setPersonData(details.response);
 		}
-	}, [details.response]);
+		if (credits.response !== null) {
+			setPersonCredits(credits.response);
+		}
+	}, [details.response, credits.response]);
 
-	if(personData) {
-
+	if(personData && personCredits) {
 		personDetails = (
 			<React.Fragment>
 				<div className="person details__background" />
@@ -67,6 +76,14 @@ const PersonDetailsPage = () => {
 								<PlotDetails
 									title="Biography"
 									overview={personData.biography}/>
+								<Carousel
+									className="carousel"
+									title="Filmography (Actor)"
+									credits={personCredits.cast}/>
+								<Carousel
+									className="carousel"
+									title="Filmography (crew)"
+									credits={personCredits.crew}/>
 							</Col>
 						</Row>
 					</div>
