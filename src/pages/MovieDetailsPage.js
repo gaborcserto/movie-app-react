@@ -8,7 +8,7 @@ import PlotDetails from '../components/Details/PlotDetails';
 import Img from '../components/ImgLoader'
 import GenresDetails from "../components/Details/GenresDetails";
 import PersonLinkDetails from "../components/Details/PersonLinkDetails";
-import CastDetails from '../components/Details/CastDetails';
+import CastDetails from '../components/Details/Cast/CastDetails';
 import Rating from '../components/Rating/Rating';
 import Carousel from '../components/Carousel/Carousel';
 import moment from 'moment';

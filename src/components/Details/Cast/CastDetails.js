@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Row } from 'react-bootstrap';
-import Img from '../../components/ImgLoader'
+import Img from '../../ImgLoader'
 
 const castDetails = props => {
 	let cast = 'N/A';

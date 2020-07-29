@@ -9,8 +9,8 @@ import PlotDetails from '../components/Details/PlotDetails';
 import GenresDetails from '../components/Details/GenresDetails';
 import PersonLinkDetails from '../components/Details/PersonLinkDetails'
 import moment from 'moment';
-import CastDetails from '../components/Details/CastDetails';
-import SeasonsDetails from '../components/Details/SeasonsDetails';
+import CastDetails from '../components/Details/Cast/CastDetails';
+import SeasonsDetails from '../components/Details/Seasons/SeasonsDetails';
 import Rating from '../components/Rating/Rating';
 import Carousel from "../components/Carousel/Carousel";
 

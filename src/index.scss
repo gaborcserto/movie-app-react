@@ -13,8 +13,8 @@
 @import './components/MovieCard/MovieCard';
 
 @import './pages/DetailsPage';
-@import './components/Details/CastDetails';
-@import './components/Details/SeasonsDetails';
+@import 'components/Details/Cast/CastDetails';
+@import 'components/Details/Seasons/SeasonsDetails';
 @import './components/Rating/Rating';
 @import './components/Carousel/Carousel';
 @import './pages/ErrorPage';

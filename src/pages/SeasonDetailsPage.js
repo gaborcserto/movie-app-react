@@ -4,7 +4,8 @@ import { Col, Row } from 'react-bootstrap';
 import fetchingData from '../hooks/FetchingData';
 import NoDetails from '../components/Details/NoDetails'
 import Img from '../components/ImgLoader';
-import EpisodesDetails from '../components/Details/EpisodesDetails';
+import EpisodesDetails from '../components/Details/Seasons/EpisodesDetails';
+import SeasonSelectForm from '../components/Details/Seasons/SeasonSelectForm';
 import moment from 'moment';
 
 const SeriesDetailsPage = () => {
@@ -13,14 +14,17 @@ const SeriesDetailsPage = () => {
 
 	const [seasonsData, setSeasonsData] = useState(null);
 	const [baseData, setBaseData] = useState(null);
+	const [seasonNumber, setSeasonNumber] = useState(params.seasons);
+
+	const handleSeasonSelectChange = e => {
+		setSeasonNumber(e.target.value);
+	}
 
 	const details = fetchingData({
 		queryType: 'tv',
 		seasonsID: params.id,
-		season: params.seasons
+		season: seasonNumber
 	});
-
-
 
 	const baseDetails = fetchingData({
 		queryType: 'tv',
@@ -39,7 +43,6 @@ const SeriesDetailsPage = () => {
 	let background = null;
 
 	if(seasonsData && baseData) {
-		console.log(seasonsData);
 		if(baseData.backdrop_path !== null) background = {backgroundImage: `url(https://image.tmdb.org/t/p/original${baseData.backdrop_path})`};
 		seasonDetails = (
 			<React.Fragment>
@@ -64,11 +67,17 @@ const SeriesDetailsPage = () => {
 					<div className="details__content__body">
 						<Row>
 							<Col sm={12} md={3} className="details__content__body__short">
+								<SeasonSelectForm
+									seasonNumber={seasonNumber}
+									seasons={baseData.seasons}
+									changed={handleSeasonSelectChange}
+								/>
 							</Col>
 							<Col sm={12} md={9} className="details__content__body__plot">
 								<EpisodesDetails
 									episodes={seasonsData.episodes}
 									title={seasonsData.name}
+									overview={seasonsData.overview}
 								/>
 							</Col>
 						</Row>

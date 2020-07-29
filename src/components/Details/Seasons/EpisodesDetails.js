@@ -1,11 +1,9 @@
 import React from 'react';
 import { Col, Row } from 'react-bootstrap';
-import Img from "../ImgLoader";
+import Img from "../../ImgLoader";
 import moment from "moment";
 
 const episodesDetails = props => {
-	console.log(props)
-
 	const episodesItems = props.episodes.map((episode, index) => (
 			<Row
 				className="episodes__items"
@@ -40,6 +38,7 @@ const episodesDetails = props => {
 	return (
 		<div className="episodes">
 			<h2>{props.title}</h2>
+			{props.overview ? <h4>{props.overview}</h4> : null}
 			{episodesItems}
 		</div>
 	)

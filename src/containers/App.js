@@ -110,7 +110,9 @@ function App() {
                     <Route path="/movie_details/:id" component={MovieDetailsPage} />
                     <Route path="/series_details/:id" component={SeriesDetailsPage} />
                     <Route path="/person_details/:id" component={PersonDetailsPage} />
-                    <Route path="/season_details/:id/:seasons" component={SeasonDetailsPage} />
+                    <Route path="/season_details/:id/:seasons">
+                        <SeasonDetailsPage/>
+                    </Route>
                     <Route exact path="/">
                         <HomePage
                             upcomingMoviesData={upcomingMovies}

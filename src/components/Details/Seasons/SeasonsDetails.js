@@ -2,8 +2,6 @@ import React from 'react';
 import {Link} from "react-router-dom";
 
 const SeasonsDetails = props => {
-	console.log(props)
-
 	const seasonsItems = props.seasons.map((season, index) => (
 			<Link
 				key={index}
