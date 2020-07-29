@@ -41,6 +41,7 @@ const Carousel = props => {
 		return <ImageCarousel
 			title={props.title}
 			images={props.images}
+			alt={props.alt}
 			responsive={handleResponsive(props.images)}
 			handle={handleOnDragStart}/>;
 	} else if ((props.videos && props.videos.length > 0) || (props.credits && props.credits.length > 0)) {

@@ -12,7 +12,8 @@ const imageCarousel = props => {
 				onDragStart={props.handle}
 				className="item carousel__item"
 				src={`https://image.tmdb.org/t/p/w500${image.file_path}`}
-				alt={`${props.alt}-${index}`}/>
+				title={props.title}
+				alt={`${index+1} of ${props.images.length}`}/>
 		</a>
 	));
 

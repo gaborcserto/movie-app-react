@@ -11,6 +11,7 @@ import SearchPage from '../pages/SearchPage';
 import MovieDetailsPage from '../pages/MovieDetailsPage';
 import SeriesDetailsPage from '../pages/SeriesDetailsPage';
 import PersonDetailsPage from '../pages/PersonDetailsPage';
+import SeasonDetailsPage from '../pages/SeasonDetailsPage';
 import ErrorPage from '../pages/ErrorPage';
 import fetchingData from '../hooks/FetchingData';
 
@@ -109,6 +110,7 @@ function App() {
                     <Route path="/movie_details/:id" component={MovieDetailsPage} />
                     <Route path="/series_details/:id" component={SeriesDetailsPage} />
                     <Route path="/person_details/:id" component={PersonDetailsPage} />
+                    <Route path="/season_details/:id/:seasons" component={SeasonDetailsPage} />
                     <Route exact path="/">
                         <HomePage
                             upcomingMoviesData={upcomingMovies}

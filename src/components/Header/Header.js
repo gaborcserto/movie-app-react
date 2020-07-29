@@ -23,6 +23,11 @@ const Header = (props) => {
 		noSearch = true;
 	}
 
+	if ((/season_details/).test(document.URL)) {
+		detailsStyle = ' details';
+		noSearch = true;
+	}
+
 	const goBack = () => {
 		window.history.back();
 	}
