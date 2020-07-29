@@ -13,13 +13,9 @@
 	top: 0;
 	z-index: 9999;
 
-	&.details {
-		background: transparent;
-		box-shadow: none;
-	}
-
 	&__navBar {
-		background: linear-gradient(rgba($black, .9) 0%, rgba($black, 0) 100%);
+		@include transition(background-color .3s ease);
+		background-color: linear-gradient(rgba($black, .99) 0%, rgba($black, 0) 100%);
 
 		.navbar-brand {
 			color: $primary;
@@ -76,6 +72,24 @@
 				margin-bottom: 10px;
 				padding: .5rem;
 				width: 100%;
+			}
+		}
+	}
+
+	&.details {
+		background-color: transparent;
+		background-image: none;
+		box-shadow: none;
+
+		&.scrolled {
+			.header__navBar {
+				@include transition(background-color .3s ease);
+				background-color: $black !important;
+				box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25),
+				0 2px 2px rgba(0, 0, 0, 0.20),
+				0 4px 4px rgba(0, 0, 0, 0.15),
+				0 8px 8px rgba(0, 0, 0, 0.10),
+				0 16px 16px rgba(0, 0, 0, 0.05);
 			}
 		}
 	}

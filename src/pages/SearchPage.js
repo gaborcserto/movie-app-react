@@ -31,6 +31,10 @@ const SearchPage = props => {
 	if(searchData.loading || !searchData.response) {
 		listItems = <Loading />;
 	} else {
+		searched.results.sort((a, b) => {
+			return new Date(b.popularity) - new Date(a.popularity);
+		});
+
 		listItems = searched.results.map((value, index) => (
 			<Col className="searchResult__col" key={`${index}-${value.id}`} sm={12} md={6} lg={3}>
 				<MovieCard key={index} card={value} type={params.type} />

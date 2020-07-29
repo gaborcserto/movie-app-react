@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Container, Button, FormControl } from 'react-bootstrap';
+import { Button, FormControl } from 'react-bootstrap';
 import { FaSearch } from 'react-icons/fa';
 
 const SearchBar = (props) => {
@@ -19,35 +19,38 @@ const SearchBar = (props) => {
 		//setSearchType('movie')
 	}*/
 
-	const callSearchFunction = e => {
+	const handleSearchFormSubmit = e => {
 		e.preventDefault();
 		props.search(searchValue, searchType);
-		//resetInputField();
 	}
 
 	return (
-		<Container className="SearchBar">
-			<FormControl
-				onChange={handleSearchSelectChanges}
-				className="SearchBar__select"
-				as="select"
-				value={searchType}>
-				<option value="movie">Movie</option>
-				<option value="tv">Series</option>
-				<option value="person">Person</option>
-			</FormControl>
-			<FormControl
-				placeholder="Search..."
-				className="SearchBar__input"
-				value={searchValue}
-				onChange={handleSearchInputChanges} />
-			<Button
-				onClick={callSearchFunction}
-				className="SearchBar__button"
-				variant="danger">
-				<FaSearch />
-			</Button>
-	</Container>
+		<div className="SearchBar">
+			<form className="container" onSubmit={handleSearchFormSubmit}>
+				<FormControl
+					onChange={handleSearchSelectChanges}
+					className="SearchBar__select"
+					as="select"
+					name="searchType"
+					value={searchType}>
+					<option value="movie">Movie</option>
+					<option value="tv">Series</option>
+					<option value="person">Person</option>
+				</FormControl>
+				<FormControl
+					placeholder="Search..."
+					className="SearchBar__input"
+					name="searchValue"
+					value={searchValue}
+					onChange={handleSearchInputChanges} />
+				<Button
+					type="submit"
+					className="SearchBar__button"
+					variant="danger">
+					<FaSearch />
+				</Button>
+			</form>
+		</div>
 	);
 }
 

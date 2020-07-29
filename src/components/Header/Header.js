@@ -1,39 +1,34 @@
-import React from "react";
-import SearchBar from "./SearchBar/SearchBar";
-import { Nav, Navbar, Button } from "react-bootstrap";
+import React from 'react';
+import SearchBar from './SearchBar/SearchBar';
+import { Nav, Navbar, Button } from 'react-bootstrap';
 import { NavLink, withRouter } from 'react-router-dom';
 import { RiMovie2Line } from "react-icons/ri";
+import { useScrollHandler } from '../../hooks/ScrollCheck';
 
 const Header = (props) => {
 	let detailsStyle = '';
-	let noSearch = false;
+	let scrolledStye = ''
+	let backButton = false;
 
-	if ((/movie_details/).test(document.URL)) {
-		detailsStyle = ' details';
-		noSearch = true;
-	}
+	const detailPages = /((movie_details)|(person_details)|(series_details)|(season_details))/;
 
-	if ((/person_details/).test(document.URL)) {
+	if (detailPages.test(document.URL)) {
 		detailsStyle = ' details';
-		noSearch = true;
-	}
-
-	if ((/series_details/).test(document.URL)) {
-		detailsStyle = ' details';
-		noSearch = true;
-	}
-
-	if ((/season_details/).test(document.URL)) {
-		detailsStyle = ' details';
-		noSearch = true;
+		backButton = true;
 	}
 
 	const goBack = () => {
 		window.history.back();
 	}
 
+	const scroll = useScrollHandler(100);
+	if(scroll) {
+		scrolledStye = ' scrolled';
+	}
+
 	return (
-		<header className={`header${detailsStyle}`}>
+		<header className={`header${detailsStyle}${scrolledStye}`}>
+			<SearchBar className="header__search" search={props.search}/>
 			<Navbar
 				className="header__navBar"
 				sticky="top"
@@ -75,16 +70,12 @@ const Header = (props) => {
 							Upcoming Movies
 						</NavLink>
 					</Nav>
-					{ noSearch ?
+					{ backButton ?
 						<Button variant="danger" className="btnBack ripple" onClick={goBack}>❰❰ Back </Button>:
 						null
 					}
 				</Navbar.Collapse>
 			</Navbar>
-			{ noSearch ?
-				null :
-				<SearchBar className="header__search" search={props.search}/>
-			}
 		</header>
 	);
 }
