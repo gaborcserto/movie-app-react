@@ -1,9 +1,23 @@
 import React from 'react';
 import { Col, Row } from 'react-bootstrap';
-import Img from "../../ImgLoader";
+//import Img from "../../ImgLoader";
 import moment from "moment";
+import SimpleReactLightbox, {SRLWrapper} from 'simple-react-lightbox';
+import {generateCustomPlaceholderURL} from 'react-placeholder-image';
 
 const episodesDetails = props => {
+
+	const handlePoster = (imagePath) => {
+		if (imagePath) {
+			return `https://image.tmdb.org/t/p/w200${imagePath}`;
+		} else {
+			return generateCustomPlaceholderURL(200, 150, {
+				textColor: '#ffffff',
+				text: 'No Image',
+			});
+		}
+	}
+
 	const episodesItems = props.episodes.map((episode, index) => (
 			<Row
 				className="episodes__items"
@@ -11,14 +25,14 @@ const episodesDetails = props => {
 				<Col sm={12}
 				     md={3}
 				     className="episodes__items__image">
-					<Img
-						src={episode.still_path}
-						width={200}
-						height={150}
-						type="w200"
-						styled="episodes__items__image__img"
-						title={episode.name}
-						text="No Image"/>
+					<a href={`https://image.tmdb.org/t/p/original${episode.still_path}`}
+					   data-attribute="SRL">
+						<img
+							className="episodes__items__image__img"
+							src={handlePoster(episode.still_path)}
+							title={episode.name}
+							alt={episode.name}/>
+					</a>
 				</Col>
 				<Col sm={12}
 				     md={9}
@@ -39,7 +53,11 @@ const episodesDetails = props => {
 		<div className="episodes">
 			<h2>{props.title}</h2>
 			{props.overview ? <h4>{props.overview}</h4> : null}
-			{episodesItems}
+			<SimpleReactLightbox>
+				<SRLWrapper>
+				{episodesItems}
+				</SRLWrapper>
+			</SimpleReactLightbox>
 		</div>
 	)
 }
