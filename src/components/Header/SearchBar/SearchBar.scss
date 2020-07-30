@@ -9,6 +9,11 @@
 		padding-top: 70px;
 	}
 
+	@include media-breakpoint-down(sm) {
+		height: calc(38px + 5rem);
+		padding-top: 40px;
+	}
+
 	&__select {
 		display: inline-block;
 		float: left;

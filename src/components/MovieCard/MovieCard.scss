@@ -43,6 +43,12 @@
 			filter: grayscale(100%);
 		}
 	}
+
+	@include media-breakpoint-down(sm) {
+		&:hover {
+			@include transform(none);
+		}
+	}
 }
 
 .Card {

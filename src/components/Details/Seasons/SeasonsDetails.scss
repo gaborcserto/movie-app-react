@@ -10,10 +10,12 @@
 		}
 
 		&__image {
+			padding-bottom: 20px;
+
 			&__img {
 				@include soft-shadow($black);
 				@include border-radius( 0.4rem);
-				max-width: 100%;
+				width: 100%;
 			}
 		}
 

@@ -76,6 +76,10 @@
 			}
 		}
 	}
+
+	@include media-breakpoint-down(sm) {
+		margin-top: 170px;
+	}
 }
 
 footer {

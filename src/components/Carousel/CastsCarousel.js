@@ -25,6 +25,9 @@ const castsCarousel = props => {
 	}
 
 	const responsive = {
+		0: {
+			items: 2
+		},
 		760: {
 			items: 3
 		},

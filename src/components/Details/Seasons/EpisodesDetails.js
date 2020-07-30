@@ -9,7 +9,7 @@ const episodesDetails = props => {
 
 	const handlePoster = (imagePath) => {
 		if (imagePath) {
-			return `https://image.tmdb.org/t/p/w200${imagePath}`;
+			return `https://image.tmdb.org/t/p/w500${imagePath}`;
 		} else {
 			return generateCustomPlaceholderURL(200, 150, {
 				textColor: '#ffffff',

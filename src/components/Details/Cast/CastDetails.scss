@@ -38,5 +38,12 @@
 			@include transform(scale(1.08));
 			text-decoration: none
 		}
+
+		@include media-breakpoint-down(sm) {
+			&:hover {
+				@include transform(none);
+				filter: grayscale(100%);
+			}
+		}
 	}
 }

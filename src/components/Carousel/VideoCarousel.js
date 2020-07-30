@@ -2,16 +2,6 @@ import React from "react";
 import AliceCarousel from "react-alice-carousel";
 
 const videoCarousel = props => {
-
-	const responsive = {
-		760: {
-			items: 3
-		},
-		1020: {
-			items: 4
-		}
-	};
-
 	const carouselItems = props.videos.map((video, index) => (
 		<div className="item carousel__item video" key={index}>
 			<iframe
@@ -32,7 +22,7 @@ const videoCarousel = props => {
 			<AliceCarousel
 				touchTrackingEnabled={true}
 				dotsDisabled={true}
-				responsive={responsive}
+				responsive={props.responsive}
 				mouseTrackingEnabled={true}>
 				{carouselItems}
 			</AliceCarousel>

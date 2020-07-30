@@ -1,6 +1,6 @@
 .header {
 	background-color: $gray-1;
-	background-image: linear-gradient(to bottom, rgba(0, 0, 0, .52), rgba($gray-1, 1)), url('../../assets/img/hero.jpg');
+	background-image: linear-gradient(to top, rgba($gray-1, 1) 0, rgba($gray-1, 1) 60px, rgba($gray-1, .52) 100%) , url('../../assets/img/hero.jpg');
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -14,12 +14,13 @@
 	z-index: 9999;
 
 	&__navBar {
-		@include transition(background-color .3s ease);
-		background-color: linear-gradient(rgba($black, .99) 0%, rgba($black, 0) 100%);
+		@include transition(background-color .5s ease);
+		background-color: $gray-1 !important;
 
 		.navbar-brand {
 			color: $primary;
-			padding-bottom: 1rem;
+			position: relative;
+			z-index: 101;
 
 			&__logo {
 				display: inline-block;
@@ -55,36 +56,140 @@
 						width: 100%;
 					}
 				}
-
-				@include media-breakpoint-down(sm) {
-					padding: .2rem .5rem;
-				}
 			}
 		}
 
 		.btnBack {
 			float: right;
+			margin-top: -0.5rem;
 			padding: 0 .8rem;
+		}
 
-			@include media-breakpoint-down(sm) {
+		@include media-breakpoint-down(sm) {
+			display: block;
+			width: 100%;
+
+			.navbar-toggler {
+				border: 0;
+				color: $white;
+				float: right;
+				margin: 0;
+				outline: none;
+				padding: 0;
+				position: relative;
+				z-index: 101;
+				width: 40px;
+
+				&:after,
+				&:before,
+				& div {
+					background-color: $white;
+					border-radius: 3px;
+					content: '';
+					display: block;
+					height: 3px;
+					margin: 7px 0;
+					transition: all .2s ease-in-out;
+				}
+
+				&.open {
+					&:before {
+						transform: translateY(8px) rotate(135deg);
+					}
+
+					&:after {
+						transform: translateY(-12px) rotate(-135deg);
+					}
+
+					div {
+						transform: scale(0);
+					}
+				}
+			}
+
+			.navbar-nav {
+				.nav-link {
+					padding: .4rem 15px;
+
+					&:after {
+						display: none;
+					}
+
+					&:hover {
+						color: $primary;
+
+						&:after {
+							display: none;
+						}
+					}
+
+					&.active {
+						color: $primary;
+						background-color: $gray-2;
+
+						&:after {
+							display: none;
+						}
+					}
+				}
+			}
+
+			.navbar-collapse {
+				@include transition(right .5s ease);
+				background: $gray-1;
+				border-top: 1px solid $black;
 				display: block;
-				float: none;
-				margin-bottom: 10px;
-				padding: .5rem;
-				width: 100%;
+				height: 100vh;
+				position: absolute;
+				right: -70vw;
+				top: 56px;
+				width: 70vw;
+				z-index: 100;
+
+				&.open {
+					@include transition(right .5s ease);
+					box-shadow: 0 1px 1px rgba($black, .08),
+					0 2px 2px rgba($black, .12),
+					0 4px 4px rgba($black, .16),
+					0 8px 8px rgba($black, .20);
+					right: 0;
+				}
+			}
+
+			.btnBack {
+				background: transparent;
+				border: 0;
+				color: $primary;
+				padding: inherit;
+				position: absolute;
+				right: 60px;
+				top: .9rem;
+
+				span {
+					border: 0;
+					display: none;
+				}
+
+				&:active,
+				&:focus,
+				&:active:focus {
+					background-color: transparent !important;
+					box-shadow: none !important;
+					color: $primary;
+				}
 			}
 		}
 	}
 
 	&.details {
-		background-color: transparent;
+		background-color: rgba($gray-1, 0);
 		background-image: none;
 		box-shadow: none;
 
 		&.scrolled {
 			.header__navBar {
-				@include transition(background-color .3s ease);
-				background-color: $black !important;
+				@include transition(background-color .5s ease);
+				background-color: rgba($gray-1, 1) !important;
 				box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25),
 				0 2px 2px rgba(0, 0, 0, 0.20),
 				0 4px 4px rgba(0, 0, 0, 0.15),
@@ -92,5 +197,17 @@
 				0 16px 16px rgba(0, 0, 0, 0.05);
 			}
 		}
+	}
+
+	@include media-breakpoint-down(sm) {
+		position: fixed;
+		width: 100%;
+	}
+
+	.overlay {
+		background: rgba($black, .7);
+		height: 100%;
+		position: fixed;
+		width: 100%;
 	}
 }
