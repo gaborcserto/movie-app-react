@@ -19,14 +19,19 @@
 	&__body {
 		bottom: 0;
 		min-height: 3.5rem;
+		overflow: hidden;
 		padding: .5rem;
 		position: absolute;
 		text-align: left;
-		overflow: hidden;
+		width: 100%;
 
 		&__text {
 			font-size: .8rem;
 			font-weight: bold;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			width: 100%;
 		}
 
 		@include media-breakpoint-between(xs, lg) {
