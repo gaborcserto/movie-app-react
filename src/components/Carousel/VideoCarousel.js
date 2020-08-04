@@ -4,15 +4,16 @@ import AliceCarousel from "react-alice-carousel";
 const videoCarousel = props => {
 	const carouselItems = props.videos.map((video, index) => (
 		<div className="item carousel__item video" key={index}>
+			{video.site === "YouTube" ?
 			<iframe
-				src={`//www.youtube.com/embed/${video.key}?enablejsapi=1&origin=${window.location.origin}`}
+				src={`//www.youtube-nocookie.com/embed/${video.key}?enablejsapi=1&origin=${window.location.origin}`}
 				width='100%'
 				height='100%'
 				frameBorder='0'
 				allow='autoplay; encrypted-media'
 				allowFullScreen
 				title={video.name}
-			/>
+			/> : null }
 		</div>
 	));
 
